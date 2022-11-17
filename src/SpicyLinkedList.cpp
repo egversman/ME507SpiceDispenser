@@ -7,8 +7,7 @@
 #include <taskshare.h>
 #include <taskqueue.h>
 #include <shares.h>
-#include <constants.h>
-#include <forward_list>
+//#include <constants.h>
 #include <iostream>
 #include <unordered_map>
 
@@ -95,7 +94,7 @@ public:
     void SpicyLinkedList::SpicySort(unordered_map<uint8_t, float>, uint8_t);
 
     /**
-     *  Returns the size of a SpicyLinkedList.
+     *  Returns the size of (number of nodes in) a SpicyLinkedList.
      *  @return
      */
     uint8_t size()
@@ -113,7 +112,8 @@ public:
 
     /** Returns the amount of spice requested at a given location on the
      *  carousel.
-     *  @param   idx represents the integer index of a spice on the carousel.
+     *  @param   idx An integer index of the SpicyLinkedList at which to get the
+     *           spice amount from.
      *  @return
      */
     float getAmount(uint8_t idx)
@@ -133,7 +133,8 @@ public:
 
     /**
      *  Sets the amount of spice requested at a given location on the carousel.
-     *  @param   idx represents the integer index of a spice on the carousel.
+     *  @param   idx An integer index of the SpicyLinkedList at which to set the
+     *           spice amount.
      *  @param   amount holds the physical amount of the spice requested in
      *           teaspoons(?).
      */
@@ -153,7 +154,8 @@ public:
     }
 
     /** Inserts a new Node at a specified index in a SpicyLinkedList.
-     *  @param   idx represents the integer index of a spice on the carousel.
+     *  @param   idx An integer index of the SpicyLinkedList at which to insert
+     *           a new Node.
      *  @param   spiceId the carousel index of a spice.
      *  @param   amount holds the physical amount of the spice requested in
      *           teaspoons(?).
@@ -226,7 +228,8 @@ public:
 
     /**
      *  Removes a Node from a SpicyLinked list at a specified index.
-     *  @param   idx represents the integer index of a spice on the carousel.
+     *  @param   idx An integer index of the SpicyLinkedList at which to remove
+     *           a Node.
      *  @return
      */
     Node *SpicyLinkedList::remove(uint8_t idx)
@@ -255,9 +258,9 @@ public:
             Node *curr = this->head;
             for (uint8_t i = 0; i < this->size - 2; i++)
             {
-                curr = curr.getNextNode();
+                curr = curr->getNextNode();
             }
-            curr.setNextNode(curr.getNextNode().getNextNode());
+            curr->setNextNode(curr.getNextNode().getNextNode());
         }
 
         this->size--;
@@ -271,8 +274,8 @@ public:
      */
     Node *pop()
     {
-        Node *removed = this.getHeadNode();
-        this.getHeadNode() = this.getHeadNode().getNextNode();
+        Node *removed = this->getHeadNode();
+        this->head = this->head.getNextNode();
         return removed;
     }
 
@@ -304,20 +307,20 @@ public:
             }
         }
 
-        // find the direction that the carousel should move to get to it's first
+        // Find the direction that the carousel should move to get to it's first
         //  destination most efficiently. Counter clockwise rotation is denoted
         //  as true and clockwise as false.
-        bool sortDirection = true;
+        bool spinDirection = true;
         uint8_t compare = startIdx - 6;
         if ((compare >= 0 && first > compare) ||
             (compare < 0 && first > compare + 12))
         {
-            sortDirection = false;
+            spinDirection = false;
         }
 
         // One at a time, insert elements from input map into output list
         //  in sorted order of based on the rotation direction of the carousel.
-        if (sortDirection)
+        if (spinDirection)      // spinDirection == true (ccw rotation)
         {
             for (uint8_t i = 0; i < sizeof(input); i++)
             {
@@ -326,6 +329,7 @@ public:
                     sortedOutput.append(input[i], 1)
                     break;
                 }
+
                 Node *newNode = new Node(input[i], 1, NULL);
                 Node *curr = sortedOutput->head;
                 if (newNode.getSpiceId() >= startIdx)
@@ -334,28 +338,50 @@ public:
                     {
                         curr = curr.getNextNode();
                     }
-                    curr.setNextNode(newNode);
+                } else      //newNode.getSpiceId() < startIdx
+                {
+                    while (curr.getNextNode.getSpiceId() > curr.getSpiceId())
+                    {
+                        curr = curr.getNextNode();
+                    }
+                    while (curr.getNextNode.getSpiceId() < curr.getSpiceId())
+                    {
+                        curr = curr.getNextNode();
+                    }
                 }
+                curr.setNextNode(newNode);
             }
         }
-        else
+        else    // spinDirection == false (cw rotation)
         {
             for (uint8_t i = 0; i < sizeof(input); i++)
             {
                 if (sortedOutput.getHeadNode() == NULL)
                 {
-                    sortedOutput.append(input[i], 1) break;
+                    sortedOutput.append(input[i], 1)
+                    break;
                 }
+
                 Node *newNode = new Node(input[i], 1, NULL);
                 Node *curr = sortedOutput->head;
-                if (newNode.getSpiceId() >= startIdx)
+                if (newNode.getSpiceId() <= startIdx)
                 {
+                    while (curr.getNextNode.getSpiceId() < curr.getSpiceId())
+                    {
+                        curr = curr.getNextNode();
+                    }
+                } else      //newNode.getSpiceId() > startIdx
+                {
+                    while (curr.getNextNode.getSpiceId() < curr.getSpiceId())
+                    {
+                        curr = curr.getNextNode();
+                    }
                     while (curr.getNextNode.getSpiceId() > curr.getSpiceId())
                     {
                         curr = curr.getNextNode();
                     }
-                    curr.setNextNode(newNode);
                 }
+                curr.setNextNode(newNode);
             }
         }
 
@@ -363,22 +389,4 @@ public:
     }
 };
 
-// void SortedInsert(uint8_t spiceId, float amount)
-// {
-//     Node *newNode = new Node(spiceId, amount);
-//     if (this->head == NULL || this->head->getSpiceId() >= newNode.getSpiceId())
-//     {
-//         newNode->next = *head;
-//         *head = newNode;
-//         return;
-//     }
-
-//     Node *curr = this->head;
-//     while (curr.getNextNode() != NULL &&
-//            curr.getNextNode().getSpiceId() < newNode.getSpiceId())
-//         curr = curr->next;
-
-//     newNode.getNextNode() = curr.getNextNode();
-//     curr.getNextNode() = newNode;
-// }
 
