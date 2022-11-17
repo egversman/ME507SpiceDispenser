@@ -8,9 +8,9 @@
 
 
 extern Queue<float> desired_weight;
-extern Queue<float> desired_angle;
+extern Queue<float> desired_position;
 extern Share<float> weight;
-extern Share<float> angle;
+extern Share<float> position;
 
 
 #endif // _SHARES_H_

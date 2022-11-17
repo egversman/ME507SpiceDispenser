@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <HX711.h>
+#include <shares.h>
 
 
 void load_cell (void* p_params)
@@ -8,7 +9,6 @@ void load_cell (void* p_params)
   uint8_t pin_DOUT = 10;
   uint8_t pin_SCK = 11;
   float calibration;
-  float weight;
   
 
   HX711 scale;
@@ -40,8 +40,8 @@ void load_cell (void* p_params)
   //Loop 
   while(true)
   {
-    scale.get_units(10), 5; 
-    weight = scale.get_units(10), 5;
+    scale.get_units(10); 
+    weight.put(scale.get_units(10));
     vTaskDelay(1); 
   }
 }
