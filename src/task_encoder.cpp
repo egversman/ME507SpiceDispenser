@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <encoder_class.h>
+#include <shares.h>
 
 
 void task_encoder (void* p_params)
@@ -7,7 +8,6 @@ void task_encoder (void* p_params)
     uint8_t pinA = 13;
     uint8_t pinB = 12;
     int32_t last_state;
-    int32_t position;
 
     Encoder encoder1(pinA, pinB);
     last_state = encoder1.position;
@@ -16,7 +16,7 @@ void task_encoder (void* p_params)
     {
         encoder1.get_position(last_state);
         last_state = encoder1.last_state; 
-        position = encoder1.position; 
+        position.put(encoder1.position); 
         vTaskDelay(1);
     }
     

@@ -2,10 +2,11 @@
 #include <encoder_class.h>
 
 
-Encoder :: Encoder(uint8_t input_pinA, uint8_t input_pinB)
+Encoder :: Encoder(uint8_t input_pinA, uint8_t input_pinB, uint16_t ppr)
 {
     last_state = 0; 
-    position = 0; 
+    position = 0.0; 
+    ticks = 0;
     pinA = input_pinA;
     pinB = input_pinB;
     pinMode(pinA, INPUT);
@@ -26,16 +27,18 @@ int32_t Encoder :: get_position (long last_state)
     {
         if(Bstate != Astate)
         {
-            position--;
+            ticks--;
         }
 
         else
         {
-            position++;
+            ticks++;
         }
     }
 
     last_state = Astate;
+
+    position = ticks * (360 / ppr);
 
     return last_state; 
     return position; 
