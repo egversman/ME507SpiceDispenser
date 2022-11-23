@@ -3,7 +3,7 @@
 #include <shares.h>
 
 
-void load_cell (void* p_params)
+void task_load_cell (void* p_params)
 {
 
   uint8_t pin_DOUT = 10;

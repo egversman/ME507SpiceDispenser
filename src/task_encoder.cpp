@@ -9,7 +9,7 @@ void task_encoder (void* p_params)
     uint8_t pinB = 12;
     int32_t last_state;
 
-    Encoder encoder1(pinA, pinB);
+    Encoder encoder1(pinA, pinB, 5120);
     last_state = encoder1.position;
 
     while(true)
