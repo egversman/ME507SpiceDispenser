@@ -2,16 +2,7 @@
  *  This file contains
  */
 
-#include <Arduino.h>
-//#include <PrintStream.h>
-//#include <taskshare.h>
-//#include <taskqueue.h>
-//#include <shares.h>
-//#include <constants.h>
-#include <iostream>
-#include <unordered_map>
-
-using namespace std;
+#include "SpicyLinkedList.h"
 
 /** @brief   SpicyLinkedList class implements a singly-linked list to store and
  *           manipulate input data from the spice machine website.
@@ -19,84 +10,14 @@ using namespace std;
  */
 class SpicyLinkedList
 {
-    /** @brief   Node class to represent an element of a SpicyLinkedList.
-     *  @details
-     */
-    class Node
-    {
-    protected:
-        uint8_t spiceId;
-        float amount;
-        Node *next;
-
-    public:
-        Node()
-        {
-            spiceId = 0;
-            amount = 0;
-            next = NULL;
-        }
-
-        Node(uint8_t spiceId, float amount)
-        {
-            this->spiceId = spiceId;
-            this->amount = amount;
-            next = NULL;
-        }
-
-        Node(uint8_t spiceId, float amount, Node *next)
-        {
-            this->spiceId = spiceId;
-            this->amount = amount;
-            this->next = next;
-        }
-
-        uint8_t getSpiceId()
-        {
-            return spiceId;
-        }
-
-        float getAmount()
-        {
-            return amount;
-        }
-
-        void setAmount(float newAmount)
-        {
-            amount = newAmount;
-        }
-
-        Node *getNextNode()
-        {
-            return next;
-        }
-
-        void setNextNode(Node *newNext)
-        {
-            next = newNext;
-        }
-    };
-
 public:
-    Node *head;     // public only while testing, protected otherwise
-    uint8_t size = 0;   // public only while testing, protected otherwise
-
+    Node *head;       // public only while testing, protected otherwise
+    uint8_t size = 0; // public only while testing, protected otherwise
 
     SpicyLinkedList()
     {
         head = NULL;
     }
-
-    uint8_t size();
-    Node *getHeadNode();
-    float getAmount(uint8_t idx);
-    void setAmount(uint8_t, float);
-    void insert(uint8_t idx, uint8_t spiceId, float amount);
-    void append(uint8_t, float);
-    Node *remove(uint8_t);
-    Node *pop();
-    SpicyLinkedList *SpicyLinkedList::SpicySort(unordered_map<uint8_t, float>, 
-                                                                       uint8_t);
 
     /**
      *  Returns the size of (number of nodes in) a SpicyLinkedList.
@@ -109,7 +30,7 @@ public:
 
     /**
      *  Returns a pointer to the head node of a SpicyLinkedList.
-     *  @return  Pointer ton head ead node 
+     *  @return  Pointer ton head ead node
      */
     Node *getHeadNode()
     {
@@ -118,19 +39,19 @@ public:
 
     /**
      *  Returns a pointer to the head node of a SpicyLinkedList.
-     *  @param   newHead ton head ead node 
+     *  @param   newHead ton head ead node
      */
     void setHeadNode(Node *newHead)
     {
         head = newHead;
     }
 
-    /** 
+    /**
      *  Returns the amount of spice requested at a given location on the
      *  carousel.
      *  @param   idx An integer index of the SpicyLinkedList at which to get the
      *           spice amount from.
-     *  @return  
+     *  @return
      */
     float getAmount(uint8_t idx)
     {
@@ -169,7 +90,7 @@ public:
         curr->setAmount(amount);
     }
 
-    /** 
+    /**
      *  Inserts a new Node at a specified index in a SpicyLinkedList.
      *  @param   idx An integer index of the SpicyLinkedList at which to insert
      *           a new Node.
@@ -177,7 +98,7 @@ public:
      *  @param   amount holds the physical amount of the spice requested in
      *           teaspoons(?).
      */
-    void SpicyLinkedList::insert(uint8_t idx, uint8_t spiceId, float amount)
+    void insert(uint8_t idx, uint8_t spiceId, float amount)
     {
         if (this->size < idx || idx < 0)
         {
@@ -220,7 +141,7 @@ public:
      *  @param   amount holds the physical amount of the spice requested in
      *           teaspoons(?).
      */
-    void SpicyLinkedList::append(uint8_t spiceId, float amount)
+    void append(uint8_t spiceId, float amount)
     {
         Node *newNode = new Node(spiceId, amount);
 
@@ -249,7 +170,7 @@ public:
      *           a Node.
      *  @return
      */
-    Node *SpicyLinkedList::remove(uint8_t idx)
+    Node *remove(uint8_t idx)
     {
         if (this->size < idx || idx < 0)
         {
@@ -302,7 +223,8 @@ public:
      *  @param   input
      *  @param   startIdx
      */
-    SpicyLinkedList *SpicyLinkedList::SpicySort(unordered_map<uint8_t, float> input, uint8_t startIdx)
+    SpicyLinkedList *SpicySort(unordered_map<uint8_t, float> input,
+                               uint8_t startIdx)
     {
         if (input.size() == 0)
         {
@@ -338,7 +260,7 @@ public:
 
         // One at a time, insert elements from input map into output list
         //  in sorted order of based on the rotation direction of the carousel.
-        if (spinDirection)      // spinDirection == true (ccw rotation)
+        if (spinDirection) // spinDirection == true (ccw rotation)
         {
             for (uint8_t i = 0; i < sizeof(input); i++)
             {
@@ -356,7 +278,8 @@ public:
                     {
                         curr = curr->getNextNode();
                     }
-                } else      //newNode.getSpiceId() < startIdx
+                }
+                else // newNode.getSpiceId() < startIdx
                 {
                     while (curr->getNextNode()->getSpiceId() > curr->getSpiceId())
                     {
@@ -370,7 +293,7 @@ public:
                 curr->setNextNode(newNode);
             }
         }
-        else    // spinDirection == false (cw rotation)
+        else // spinDirection == false (cw rotation)
         {
             for (uint8_t i = 0; i < sizeof(input); i++)
             {
@@ -388,7 +311,8 @@ public:
                     {
                         curr = curr->getNextNode();
                     }
-                } else      //newNode.getSpiceId() > startIdx
+                }
+                else // newNode.getSpiceId() > startIdx
                 {
                     while (curr->getNextNode()->getSpiceId() < curr->getSpiceId())
                     {
@@ -406,5 +330,3 @@ public:
         return sortedOutput;
     }
 };
-
-

@@ -3,6 +3,7 @@
  */
 
 #include <Arduino.h>
+#include "SpicyNode.h"
 //#include <PrintStream.h>
 //#include <taskshare.h>
 //#include <taskqueue.h>
@@ -53,14 +54,15 @@ public:
         return amount;
     }
 
-    Node *getNextNode()
-    {
-        return next;
-    }
 
     void setAmount(float newAmount)
     {
         amount = newAmount;
+    }
+
+    Node *getNextNode()
+    {
+        return next;
     }
 
     void setNextNode(Node *newNext)

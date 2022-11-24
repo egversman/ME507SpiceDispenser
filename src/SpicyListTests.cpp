@@ -111,30 +111,30 @@ class SpicyListTests
         lst.append(3, 4.0);
 
         Node *removed = lst.pop();
-        if (removed.getAmount() != 3.0) 
+        if (removed->getAmount() != 3.0) 
         {
-            cout << "1st pop amount != " + to_string(removed.getAmount()) << endl;
+            cout << "1st pop amount != " + to_string(removed->getAmount()) << endl;
             return false;
         }
 
         Node *removed = lst.pop();
-        if (removed.getAmount() != 3.0) 
+        if (removed->getAmount() != 3.0) 
         {
-            cout << "2nd pop amount != " + to_string(removed.getAmount()) << endl;
+            cout << "2nd pop amount != " + to_string(removed->getAmount()) << endl;
             return false;
         }
 
         Node *removed = lst.pop();
-        if (removed.getAmount() != 3.0) 
+        if (removed->getAmount() != 3.0) 
         {
-            cout << "3rd pop amount != " + to_string(removed.getAmount()) << endl;
+            cout << "3rd pop amount != " + to_string(removed->getAmount()) << endl;
             return false;
         }
 
         Node *removed = lst.pop();
-        if (removed.getAmount() != 3.0) 
+        if (removed->getAmount() != 3.0) 
         {
-            cout << "4th pop amount != " + to_string(removed.getAmount()) << endl;
+            cout << "4th pop amount != " + to_string(removed->getAmount()) << endl;
             return false;
         }
 
@@ -159,30 +159,30 @@ class SpicyListTests
         lst.insert(0, 0, 1.0);
 
         Node *removed = lst.remove(2);
-        if (removed.getAmount() != 3.0) 
+        if (removed->getAmount() != 3.0) 
         {
-            cout << "Amount at 2 != " + to_string(removed.getAmount()) << endl;
+            cout << "Amount at 2 != " + to_string(removed->getAmount()) << endl;
             return false;
         }
 
         Node *removed = lst.remove(2);
-        if (removed.getAmount() != 3.0) 
+        if (removed->getAmount() != 3.0) 
         {
-            cout << "Amount at 2 != " + to_string(removed.getAmount()) << endl;
+            cout << "Amount at 2 != " + to_string(removed->getAmount()) << endl;
             return false;
         }
 
         Node *removed = lst.remove(0);
-        if (removed.getAmount() != 3.0) 
+        if (removed->getAmount() != 3.0) 
         {
-            cout << "Amount at 0 != " + to_string(removed.getAmount()) << endl;
+            cout << "Amount at 0 != " + to_string(removed->getAmount()) << endl;
             return false;
         }
 
         Node *removed = lst.remove(0);
-        if (removed.getAmount() != 3.0) 
+        if (removed->getAmount() != 3.0) 
         {
-            cout << "Amount at 0 != " + to_string(removed.getAmount()) << endl;
+            cout << "Amount at 0 != " + to_string(removed->getAmount()) << endl;
             return false;
         }
 
@@ -266,37 +266,37 @@ class SpicyListTests
         lst.append(4, 5.0);
 
         Node *removed = lst.remove(2);
-        if (removed.getAmount() != 3.0) 
+        if (removed->getAmount() != 3.0) 
         {
-            cout << "Amount at 2 != " + to_string(removed.getAmount()) << endl;
+            cout << "Amount at 2 != " + to_string(removed->getAmount()) << endl;
             return false;
         }
 
         Node *removed = lst.remove(3);
-        if (removed.getAmount() != 5.0) 
+        if (removed->getAmount() != 5.0) 
         {
-            cout << "Amount at 3 != " + to_string(removed.getAmount()) << endl;
+            cout << "Amount at 3 != " + to_string(removed->getAmount()) << endl;
             return false;
         }
 
         Node *removed = lst.remove(1);
-        if (removed.getAmount() != 2.0) 
+        if (removed->getAmount() != 2.0) 
         {
-            cout << "Amount at 1 != " + to_string(removed.getAmount()) << endl;
+            cout << "Amount at 1 != " + to_string(removed->getAmount()) << endl;
             return false;
         }
 
         Node *removed = lst.remove(1);
-        if (removed.getAmount() != 4.0) 
+        if (removed->getAmount() != 4.0) 
         {
-            cout << "Amount at 1 != " + to_string(removed.getAmount()) << endl;
+            cout << "Amount at 1 != " + to_string(removed->getAmount()) << endl;
             return false;
         }
 
         Node *removed = lst.remove(0);
-        if (removed.getAmount() != 1.0) 
+        if (removed->getAmount() != 1.0) 
         {
-            cout << "Amount at 00!= " + to_string(removed.getAmount()) << endl;
+            cout << "Amount at 00!= " + to_string(removed->getAmount()) << endl;
             return false;
         }
 
