@@ -12,7 +12,7 @@ class SpicyListTests
     bool test01_empty()
     {
         cout << "Testing empty lists" << endl;
-        
+
         SpicyLinkedList lst;
 
         if (lst.size == 0) {
