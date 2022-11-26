@@ -3,6 +3,9 @@
  */
 
 #include "SpicyLinkedList.h"
+using std::cout;
+using std::endl;
+using std::unordered_map;
 
 /** @brief   SpicyLinkedList class implements a singly-linked list to store and
  *           manipulate input data from the spice machine website.

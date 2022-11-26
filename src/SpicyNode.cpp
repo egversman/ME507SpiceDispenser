@@ -4,25 +4,19 @@
 
 #include <Arduino.h>
 #include "SpicyNode.h"
-//#include <PrintStream.h>
-//#include <taskshare.h>
-//#include <taskqueue.h>
-//#include <shares.h>
-//#include <constants.h>
-#include <iostream>
-#include <unordered_map>
 
 /** @brief   Node class to represent an element of a SpicyLinkedList.
  *  @details
  */
 class Node
 {
-protected:
+public:     // public for testing only 
+//protected:
     uint8_t spiceId;
     float amount;
     Node *next;
 
-public:
+//public:
     Node()
     {
         spiceId = 0;
