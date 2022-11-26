@@ -1,3 +1,6 @@
+#ifndef LINKED_LIST
+#define LINKED_LIST
+
 #include <Arduino.h>
 #include "SpicyNode.h"
 #include <iostream>
@@ -12,7 +15,7 @@ public:
     Node *head;
     uint8_t size = 0;
 
-    uint8_t size();
+    uint8_t getSize();
     Node *getHeadNode();
     float getAmount(uint8_t idx);
     void setAmount(uint8_t, float);
@@ -22,3 +25,5 @@ public:
     Node *pop();
     SpicyLinkedList *SpicySort(unordered_map<uint8_t, float>, uint8_t);
 };
+
+#endif

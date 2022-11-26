@@ -1,3 +1,6 @@
+#ifndef NODE
+#define NODE
+
 #include <Arduino.h>
 
 class Node
@@ -16,3 +19,5 @@ public:
     Node *getNextNode();
     void setNextNode(Node *newNext);
 };
+
+#endif

@@ -27,7 +27,7 @@ public:     // public for testing only
      *  Returns the size of (number of nodes in) a SpicyLinkedList.
      *  @return
      */
-    uint8_t size()
+    uint8_t getSize()
     {
         return size;
     }
