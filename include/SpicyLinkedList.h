@@ -2,9 +2,13 @@
 #include "SpicyNode.h"
 #include <iostream>
 #include <unordered_map>
+using std::cout;
+using std::endl;
+using std::unordered_map;
 
 class SpicyLinkedList
 {
+public:
     Node *head;
     uint8_t size = 0;
 

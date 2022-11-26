@@ -3,9 +3,7 @@
  */
 
 #include "SpicyLinkedList.h"
-using std::cout;
-using std::endl;
-using std::unordered_map;
+
 
 /** @brief   SpicyLinkedList class implements a singly-linked list to store and
  *           manipulate input data from the spice machine website.
@@ -13,10 +11,12 @@ using std::unordered_map;
  */
 class SpicyLinkedList
 {
-public:
-    Node *head;       // public only while testing, protected otherwise
-    uint8_t size = 0; // public only while testing, protected otherwise
+public:     // public for testing only
+// protected:
+    Node *head;
+    uint8_t size = 0;
 
+// public:
     SpicyLinkedList()
     {
         head = NULL;

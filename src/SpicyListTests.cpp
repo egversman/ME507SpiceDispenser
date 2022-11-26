@@ -16,11 +16,11 @@ class SpicyListTests
 
         SpicyLinkedList lst;
 
-        if (lst.size() == 0) {
+        if (lst.size == 0) {
             return true;
         }
 
-        cout << "size != " + to_string((int) lst.size()) << endl;
+        cout << "size != " + to_string(lst.size) << endl;
 
         return false;
     }
@@ -34,9 +34,9 @@ class SpicyListTests
         lst.append(0, 1.0);
         lst.append(1, 2.0);
 
-        if (lst.size() != 2) 
+        if (lst.size != 2) 
         {
-            cout << "size != " + to_string((int) lst.size()) << endl;
+            cout << "size != " + to_string(lst.size) << endl;
             return false;
         }
 
@@ -66,9 +66,9 @@ class SpicyListTests
         lst.insert(2, 4, 4.0);
         lst.insert(2, 3, 3.0);
 
-        if (lst.size() != 4) 
+        if (lst.size != 4) 
         {
-            cout << "size != " + to_string((int) lst.size()) << endl;
+            cout << "size != " + to_string(lst.size) << endl;
             return false;
         }
 
@@ -139,9 +139,9 @@ class SpicyListTests
             return false;
         }
 
-        if (lst.size() != 0) 
+        if (lst.size != 0) 
         {
-            cout << "size != " + to_string((int) lst.size()) << endl;
+            cout << "size != " + to_string(lst.size) << endl;
             return false;
         }
 
@@ -187,9 +187,9 @@ class SpicyListTests
             return false;
         }
 
-        if (lst.size() != 0) 
+        if (lst.size != 0) 
         {
-            cout << "size != " + to_string((int) lst.size()) << endl;
+            cout << "size != " + to_string(lst.size) << endl;
             return false;
         }
 
@@ -209,9 +209,9 @@ class SpicyListTests
         lst.insert(2, 3, 4.0);
         lst.insert(2, 2, 3.0);
 
-        if (lst.size() != 4) 
+        if (lst.size != 4) 
         {
-            cout << "size != " + to_string((int) lst.size()) << endl;
+            cout << "size != " + to_string(lst.size) << endl;
             return false;
         }
 
@@ -301,9 +301,9 @@ class SpicyListTests
             return false;
         }
 
-        if (lst.size() != 0) 
+        if (lst.size != 0) 
         {
-            cout << "size != " + to_string((int) lst.size()) << endl;
+            cout << "size != " + to_string(lst.size) << endl;
             return false;
         }
 
