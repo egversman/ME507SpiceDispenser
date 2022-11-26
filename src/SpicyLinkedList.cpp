@@ -14,12 +14,13 @@ class SpicyLinkedList
 public:     // public for testing only
 // protected:
     Node *head;
-    uint8_t size = 0;
+    uint8_t size;
 
 // public:
     SpicyLinkedList()
     {
         head = NULL;
+        size = 0;
     }
 
     /**
