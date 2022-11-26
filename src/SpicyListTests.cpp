@@ -5,6 +5,15 @@
 #include <unordered_map>
 using namespace std;
 
+bool test01_empty();
+bool test02_append();
+bool test03_insert();
+bool test04_pop();
+bool test05_remove();
+bool test06_inserts();
+bool test07_insertRemove();
+bool test08_setAmount();
+
 bool test01_empty()
 {
     cout << "Testing empty lists" << endl;
