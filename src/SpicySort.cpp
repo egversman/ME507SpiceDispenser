@@ -13,7 +13,6 @@ public:
         this->input = input;
         this->startIdx = startIdx;
         this->sortedOutput = SpicyLinkedList();
-
     }
 
     /** @brief
