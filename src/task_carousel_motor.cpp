@@ -15,25 +15,31 @@ void task_carousel_motor (void* p_params)
     float current_position; 
     float desired_position; 
 
-    direction = spin_direction.get(); 
-    current_position = position.get();
-    desired_position = user_position.get(); 
 
-
-    Motor_driver carousel (pinA, pinB, speed_pin);
-    
-    if (current_position != desired_position)
+    while(true)
     {
-        if (direction == true)
-        {
-            carousel.run_forwards(speed);
-        }
 
-         if (direction == true)
-        {
-            carousel.run_backwards(speed);
-        }
+        direction = spin_direction.get(); 
+        current_position = position.get();
+        desired_position = user_position.get(); 
 
+
+        Motor_driver carousel (pinA, pinB, speed_pin);
+        
+        if (current_position != desired_position)
+        {
+            if (direction == true)
+            {
+                carousel.run_forwards(speed);
+            }
+
+            if (direction == true)
+            {
+                carousel.run_backwards(speed);
+            }
+
+        vTaskDelay(1);
+        }
     }
 }
 
