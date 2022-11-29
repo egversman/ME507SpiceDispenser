@@ -11,9 +11,9 @@ void task_manager (void* p_params)
     bool turn = true;
 
     float current_position; 
-    float desired_position;  
+    float desired_position = 0;  
     float current_weight;
-    float desired_weight; 
+    float desired_weight = 0; 
     
 
     while(true)
@@ -23,7 +23,7 @@ void task_manager (void* p_params)
         current_weight = weight.get();
         desired_weight = user_weight.get();
 
-        if(desired_weight == NULL | desired_position == NULL)
+        if(desired_weight == 0 | desired_position == 0)
         {
             state = "wait";
         }
@@ -41,7 +41,7 @@ void task_manager (void* p_params)
 
         if(state = "dispense" && desired_weight == current_weight)
         {
-            state = "turning"; 
+            state = "wait"; 
             turn = true; 
         }
 

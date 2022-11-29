@@ -23,6 +23,7 @@ void setup ()
     xTaskCreate (task_rotating_opening, "Rotating Opening", 2048, NULL, 5, NULL);
     xTaskCreate (task_carousel_motor, "Carousel Motor", 2048, NULL, 6, NULL);
     xTaskCreate (task_manager, "Carousel Motor", 2048, NULL, 4, NULL);
+    
 }
 
 void loop ()

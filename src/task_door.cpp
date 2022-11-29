@@ -19,28 +19,42 @@ void task_door (void* p_params)
 
     float current_weight;
     float desired_weight; 
+    String state;
 
     while(true)
     {
         current_weight = weight.get();
         desired_weight = user_weight.get();
+        state = current_state.get();
 
-        if(current_weight >= desired_weight)
+        if(state == "dispense")
         {
-            while(limit_switch1 != HIGH)
+            if(current_weight >= desired_weight)
             {
-                door.run_forwards(speed);
+                while(limit_switch1 != HIGH)
+                {
+                    door.run_forwards(speed);
+                }
+            }
+
+            if(limit_switch1 == HIGH)
+            {
+                vTaskDelay(3000);
+                while(limit_switch2 != HIGH)
+                {
+                    door.run_backwards(speed);
+                }
             }
         }
 
-        if(current_weight <= desired_weight)
+        else
         {
             while(limit_switch2 != HIGH)
-            {
-                door.run_backwards(speed);
-            }
+                {
+                    door.run_backwards(speed);
+                }
         }
-
+        
         vTaskDelay(1);
     }
 
