@@ -25,7 +25,7 @@ void task_door (void* p_params)
         current_weight = weight.get();
         desired_weight = user_weight.get();
 
-        if(current_weight < desired_weight)
+        if(current_weight >= desired_weight)
         {
             while(limit_switch1 != HIGH)
             {
@@ -33,7 +33,7 @@ void task_door (void* p_params)
             }
         }
 
-        if(current_weight >= desired_weight)
+        if(current_weight <= desired_weight)
         {
             while(limit_switch2 != HIGH)
             {
