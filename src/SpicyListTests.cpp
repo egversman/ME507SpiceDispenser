@@ -343,9 +343,9 @@ bool test08_setAmount()
     return true;
 }
 
-int main()
-{
-    test01_empty();
+// int main()
+// {
+//     test01_empty();
     // test02_append();
     // test03_insert();
     // test04_pop();
@@ -354,8 +354,8 @@ int main()
     // test07_insertRemove();
     // test08_setAmount();
 
-    return 0;
-}
+//     return 0;
+// }
 
 // bool test08_sortCcw()
 // {
