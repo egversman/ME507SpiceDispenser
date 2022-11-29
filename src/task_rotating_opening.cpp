@@ -14,51 +14,50 @@ void task_rotating_opening (void* p_params)
 
     uint8_t hall_effect1 = 14;
     uint8_t hall_effect2 = 15;
-
     pinMode(hall_effect1, INPUT);
     pinMode(hall_effect2, INPUT);
 
-    bool direction;
+    String state;
     float current_position; 
-    float desired_position; 
-
-    direction = spin_direction.get(); 
-    current_position = position.get();
-    desired_position = user_position.get(); 
-
+    float desired_position;  
     float current_weight;
     float desired_weight; 
 
 
     while(true)
     {
+        state = current_state.get();
+        current_position = position.get();
+        desired_position = user_position.get(); 
         current_weight = weight.get();
         desired_weight = user_weight.get();
 
-
-        if(current_position == desired_position)
+        if(state == "dispense")
         {
-            if(current_weight < desired_weight)
-            {
-                while(hall_effect1 != HIGH)
-                {
-                    rotating_opening.run_forwards(speed); 
-                }
-            }
-        }
-
             if(current_position == desired_position)
-        {
-            if(current_weight >= desired_weight)
             {
-                while(hall_effect2 != HIGH)
+                if(current_weight < desired_weight)
                 {
-                    rotating_opening.run_backwards(speed); 
+                    while(hall_effect1 != HIGH)
+                    {
+                        rotating_opening.run_forwards(speed); 
+                    }
+                }
+            }
+
+                if(current_position == desired_position)
+            {
+                if(current_weight >= desired_weight)
+                {
+                    while(hall_effect2 != HIGH)
+                    {
+                        rotating_opening.run_backwards(speed); 
+                    }
                 }
             }
         }
-
-        if(current_position != desired_position)
+        
+        else
         {
             while(hall_effect2 != HIGH)
                 {
