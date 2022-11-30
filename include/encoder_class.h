@@ -12,7 +12,7 @@ private:
 
 public: 
 
-    int32_t last_state;
+    int32_t last;
     float position;
     int32_t ticks;
 

@@ -4,7 +4,7 @@
 
 Encoder :: Encoder(uint8_t input_pinA, uint8_t input_pinB, uint16_t ppr)
 {
-    last_state = 0; 
+    last = 0; 
     position = 0.0; 
     ticks = 0;
     pinA = input_pinA;
@@ -37,10 +37,10 @@ int32_t Encoder :: get_position (long last_state)
     }
 
 
-    last_state = Astate;
+    last = Astate;
 
     position = ticks * (12 / ppr);
 
-    return last_state; 
+    return last; 
     return position; 
 }

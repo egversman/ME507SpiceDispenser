@@ -10,14 +10,14 @@ void task_encoder (void* p_params)
     int32_t last_state;
 
     Encoder encoder1(pinA, pinB, 5120);
-    last_state = encoder1.position;
+    last_state = 0;
 
     bool direction;
 
     while(true)
     {
         encoder1.get_position(last_state);
-        last_state = encoder1.last_state; 
+        last_state = encoder1.last; 
         position.put(encoder1.position); 
 
         direction = spin_direction.get();
