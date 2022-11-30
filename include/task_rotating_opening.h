@@ -1,3 +1,3 @@
 #include <Arduino.h>
 
-void task_encoder (void* p_params);
+void task_rotating_opening (void* p_params);

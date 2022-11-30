@@ -1,3 +1,3 @@
 #include <Arduino.h>
 
-void task_door (void* p_params);
+void task_carousel_motor (void* p_params);

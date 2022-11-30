@@ -44,17 +44,15 @@ void task_rotating_opening (void* p_params)
                     }
                 }
             }
-
-                if(current_position == desired_position)
+                
+            else
             {
-                if(current_weight >= desired_weight)
+                while(hall_effect2 != HIGH)
                 {
-                    while(hall_effect2 != HIGH)
-                    {
-                        rotating_opening.run_backwards(speed); 
-                    }
+                    rotating_opening.run_backwards(speed); 
                 }
             }
+            
         }
         
         else

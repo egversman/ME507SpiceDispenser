@@ -36,9 +36,10 @@ int32_t Encoder :: get_position (long last_state)
         }
     }
 
+
     last_state = Astate;
 
-    position = ticks * (360 / ppr);
+    position = ticks * (12 / ppr);
 
     return last_state; 
     return position; 

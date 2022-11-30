@@ -1,4 +1,6 @@
 #include "SpicyLinkedList.h"
+#include <shares.h>
+
 
 class SpicySort
 {
@@ -27,11 +29,13 @@ public:
             return;
         }
 
+        bool rotation_direction = direction(first());
+        spin_direction.put(rotation_direction);
         sortedOutput.append(input[0], 1);
 
         // One at a time, insert elements from input map into output list
         //  in sorted order of based on the rotation direction of the carousel.
-        if (direction(first()))     // true --> ccw rotation
+        if (rotation_direction)     // true --> ccw rotation
         {
             for (uint8_t i = 1; i < sizeof(input); i++)
             {   

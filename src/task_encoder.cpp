@@ -5,8 +5,8 @@
 
 void task_encoder (void* p_params)
 {
-    uint8_t pinA = 13;
-    uint8_t pinB = 12;
+    uint8_t pinA = 32;
+    uint8_t pinB = 33;
     int32_t last_state;
 
     Encoder encoder1(pinA, pinB, 5120);

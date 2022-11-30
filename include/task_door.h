@@ -1,3 +1,3 @@
 #include <Arduino.h>
 
-void task_rotating_opening (void* p_params);
+void task_door (void* p_params);
