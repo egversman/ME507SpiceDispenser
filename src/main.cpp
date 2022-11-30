@@ -8,6 +8,7 @@
 #include<task_load_cell.h>
 #include<task_rotating_opening.h>
 #include<task_manager.h>
+#include<PrintStream.h>
 
 
 void setup ()
