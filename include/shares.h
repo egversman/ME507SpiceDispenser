@@ -1,19 +1,15 @@
-#ifndef _SHARES_H_
-#define _SHARES_H_
+#include <taskshare.h>         
+#include <taskqueue.h>
+#include <PrintStream.h>
 
 
+extern Share<float> current_position;
+extern Queue<float> current_weight;
 
-#include "taskqueue.h"
-#include "taskshare.h"
+extern Share<bool> door_open;
 
-
-extern Queue<float> user_weight;
-extern Queue<float> user_position;
-extern Share<float> weight;
-extern Share<float> position;
-extern Queue<bool> spin_direction; 
-extern Queue<String> current_state; 
-
-
-#endif // _SHARES_H_
+// Carosell Flags
+extern Share<bool> inst_recieved;
+extern Share<bool> correct_position;
+extern Share<bool> zero;
 

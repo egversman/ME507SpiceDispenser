@@ -6,42 +6,29 @@
 void task_load_cell (void* p_params)
 {
 
-  uint8_t pin_DOUT = 10;
-  uint8_t pin_SCK = 11;
-  float calibration;
-  
+    uint8_t pin_DOUT = 17;
+    uint8_t pin_SCK = 4;
 
-  HX711 scale;
-
-
-  //Calibration
-  scale.begin(pin_DOUT, pin_SCK);
-
-  if (scale.is_ready()) 
-  {
-    scale.set_scale();    
-    scale.tare();
-    calibration = scale.get_units(10);
-  }
-  
-  else
-  {
-    Serial.println("HX711 not connected");
+    float calibration;
+    float weight = 0;
+    
+    HX711 scale;
+    scale.begin(pin_DOUT, pin_SCK);    
+    scale.set_scale(-400);
+    scale.tare();            
+    
     while(true)
     {
-      vTaskDelay(1000);
-    }
-  }
+        Serial.print("\t\t\t\tSingle Weight Reading:\t");
+        Serial.print(scale.get_units(), 1);
+        Serial.print("\t\t Weight Average:\t");
+        Serial.println(scale.get_units(10), 5);
 
-  //Setup
-  scale.set_scale(calibration);
- 
-
-  //Loop 
-  while(true)
-  {
-    scale.get_units(10); 
-    weight.put(scale.get_units(10));
-    vTaskDelay(1); 
+        weight = (scale.get_units(10), 5);
+        current_weight.put(weight);
+        
+        vTaskDelay(100);
+     
   }
 }
+

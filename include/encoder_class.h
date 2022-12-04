@@ -16,7 +16,7 @@ public:
     float position;
     int32_t ticks;
 
-    Encoder(uint8_t input_pinA, uint8_t input_pinB, uint16_t ppr);
+    Encoder(uint8_t input_pinA, uint8_t input_pinB, uint16_t input_ppr);
     int32_t get_position (long last_state);
     
 };

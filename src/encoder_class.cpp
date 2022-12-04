@@ -1,14 +1,18 @@
 #include <Arduino.h>
 #include <encoder_class.h>
+#include <PrintStream.h>
 
 
-Encoder :: Encoder(uint8_t input_pinA, uint8_t input_pinB, uint16_t ppr)
+Encoder :: Encoder(uint8_t input_pinA, uint8_t input_pinB, uint16_t input_ppr)
 {
     last = 0; 
     position = 0.0; 
     ticks = 0;
+
     pinA = input_pinA;
     pinB = input_pinB;
+    ppr = input_ppr; 
+
     pinMode(pinA, INPUT);
     pinMode(pinB, INPUT);
     
@@ -30,16 +34,15 @@ int32_t Encoder :: get_position (long last_state)
             ticks--;
         }
 
-        else
+        if(Bstate == Astate)
         {
             ticks++;
         }
     }
 
-
     last = Astate;
 
-    position = ticks * (12 / ppr);
+    position = ticks; 
 
     return last; 
     return position; 

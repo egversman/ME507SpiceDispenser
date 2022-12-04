@@ -1,63 +1,57 @@
 #include <Arduino.h>
-#include <motor_driver_class.h>
-#include <shares.h>
+#include <PrintStream.h>
+#include <shares.h> 
+#include <taskshare.h>         
+#include <taskqueue.h>
+#include <motor_driver_class.h> 
 
 
 void task_door (void* p_params)
 {
-    uint8_t pinA = 16;
-    uint8_t pinB = 17; 
-    uint8_t speed_pin = 18; 
-    uint16_t speed = 50; 
 
-    Motor_driver door (pinA, pinB, speed_pin);
+    float user_position = 2000;
+    bool move;
+    float last_position = 0; 
+    String dispense = "yes";
 
-    uint8_t limit_switch1 = 17;
-    uint8_t limit_switch2 = 18;
-    pinMode(limit_switch1, INPUT);
-    pinMode(limit_switch2, INPUT);
+    uint8_t limit1 = 18;
+    uint8_t limit2 = 5;
+    pinMode(limit1, INPUT_PULLUP);
+    pinMode(limit2, INPUT_PULLUP);
 
-    float current_weight;
-    float desired_weight; 
-    String state;
+
+    uint8_t pA1 = 1;
+    uint8_t pA2 = 3;
+    uint32_t speed = 0;
+    
+    Motor_driver door_motor;
+    door_motor.initialize(pA1, pA2);
 
     while(true)
     {
-        current_weight = weight.get();
-        desired_weight = user_weight.get();
-        state = current_state.get();
-
-        if(state == "dispense")
+        move = door_open.get();
+       
+        if(move == 1)
         {
-            if(current_weight >= desired_weight)
+            while(digitalRead(limit2) != 1)
             {
-                while(limit_switch1 != HIGH)
-                {
-                    door.run_forwards(speed);
-                }
+                door_motor.run_forwards(speed);
             }
 
-            if(limit_switch1 == HIGH)
+            if(digitalRead(limit2) == 1)
             {
                 vTaskDelay(3000);
-                while(limit_switch2 != HIGH)
+
+                while(digitalRead(limit1) != 1)
                 {
-                    door.run_backwards(speed);
+                    door_motor.run_backwards(speed);
                 }
+
+                door_open.put(0);
             }
         }
 
-        else
-        {
-            while(limit_switch2 != HIGH)
-                {
-                    door.run_backwards(speed);
-                }
-        }
-        
         vTaskDelay(1);
     }
-
+    
 }
-
-

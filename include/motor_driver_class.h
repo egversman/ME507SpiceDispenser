@@ -13,19 +13,18 @@ private:
 
 public: 
 
-        Motor_driver(uint8_t pinA, uint8_t pinB, uint8_t speed_pin);
+        Motor_driver();
+
+        void initialize (uint8_t pinA, uint8_t pinB);
 
         void run_forwards (uint16_t input_speed);
 
         void run_backwards (uint16_t input_speed);
-     
-        void forward_ramp_up(void);
-      
-        void forward_ramp_down(void);
 
-        void backwards_ramp_up(void);
+        void run_forwards_pwm (uint16_t input_speed);
 
-        void backwards_ramp_down(void);
+        void run_backwards_pwm (uint16_t input_speed);
+    
       
 };
 
