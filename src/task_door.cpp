@@ -9,7 +9,7 @@
 void task_door (void* p_params)
 {
 
-    float user_position = 2000;
+    user_position.put((float) 2000);
     bool move;
     float last_position = 0; 
     String dispense = "yes";
