@@ -26,21 +26,22 @@ void task_encoder (void* p_params)
     {
         if (state == 0) //waiting
         {
-            if (encoder_flag.get() == 1)
-            {
-                state = 1;
-                encoder_flag.put(false);
-            }
+            // if (encoder_flag.get() == 1)
+            // {
+            //     state = 1;
+            //     encoder_flag.put(false);
+            // }
+            state = 1;
         }
 
-        if (state == 1)
+        if (state == 1) //reading
         {
             encoder1.get_position(last_A, last_B);
             last_A = encoder1.new_A;  
             last_B = encoder1.new_B;
             current_position.put(encoder1.position);
             //Serial.print("Encoder Ticks:\t");
-            // Serial.println(encoder1.position);
+            Serial.println(encoder1.position);
             //Serial.println(current_position.get());
 
 
@@ -49,10 +50,11 @@ void task_encoder (void* p_params)
                 encoder1.ticks = 0;
             }
             
-            else if (carousel_position.get() == 1)
-            {
-                state = 0;
-            }
+            // else if (carousel_position.get() == 1)
+            // {
+            //     state = 0;
+            //     carousel_position.put(false);
+            // }
 
         }
         vTaskDelay(0.001);

@@ -8,7 +8,7 @@
 
 void task_opening (void* p_params)
 {
-    float user_position = 2000;
+    //float user_position = 2000;
     float position;
 
     uint8_t pB1 = 21;
@@ -23,6 +23,7 @@ void task_opening (void* p_params)
     uint8_t state = 2;
     bool sense = 0;
     bool back = 1;
+    initialized.put(false);
 
     while(true)
     {
@@ -48,19 +49,30 @@ void task_opening (void* p_params)
         }
         else if (state == 1) //waits for proper position
         {
-            if (carousel_position.get() == 1)
+            if (initialized.get() == 0)
+            {
+                initialized.put(true);
+                disp_flag.put(false);
+                state = 0;
+                Serial.println("opening initialized");
+            }
+
+            else if (carousel_position.get() == 1)
             {
                 sense = 0;
                 state = 2;
                 carousel_position.put(false);
             }
+
             else if (close_flag.get() == 1)
             {
                 state = 0;
+                close_flag.put(false);
+                disp_flag.put(true);
             }
         }
 
-        else if (state == 2) // opens, targets hall effect
+        else if (state == 2) //initializes for first time, simply opens otherwise
         {
            if (sense == 1)
             {
@@ -71,7 +83,7 @@ void task_opening (void* p_params)
                     sense = 0;
                     back = 1;
                     state = 1;
-                    Serial.println("open");
+                    //Serial.println("open");
                 }
                 else
                 {
@@ -101,6 +113,7 @@ void task_opening (void* p_params)
             }
         
         }
+        
         
     vTaskDelay(1);
     }

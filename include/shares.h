@@ -13,10 +13,10 @@ extern Share<float> user_position;  //encoder position
 extern Share<bool> door_open;
 
 //Initialized Flags
-extern Share<bool> initalized;
+extern Share<bool> initialized;
 
 // Carousel Flags
-extern Share<bool> inst_recieved;
+extern Share<bool> inst_received;
 extern Share<bool> carousel_position;
 extern Share<bool> zero;
 

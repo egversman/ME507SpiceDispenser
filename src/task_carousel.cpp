@@ -8,8 +8,8 @@
 
 void task_carousel (void* p_params)
 {
-    float selected_position = 2000; 
-    user_position.put(selected_position); 
+    // float selected_position = 2000; 
+    // user_position.put(selected_position); 
     float position;
 
     uint8_t pB1 = 23;
@@ -21,14 +21,16 @@ void task_carousel (void* p_params)
 
     Motor_driver carousel_motor;
 
-    //Temporary Flags for testing
-    initalized.put(false);
-    inst_recieved.put(true);
-    zero.put(false);
-    //end
+    // //Temporary Flags for testing
+    // initalized.put(false);
+    // inst_received.put(true);
+    // zero.put(false);
+    // //end
 
     carousel_motor.initialize(pB1, pB2);
     uint8_t state = 0;
+    
+    //initialize internal variables
     bool sense = 0;
     bool back = 1;
     bool corr = 0;
@@ -37,74 +39,64 @@ void task_carousel (void* p_params)
     {
         if (state == 0) //initialize state
         {
-            if(!initalized.get())
+            if (sense == 1)
             {
-                if(!zero.get())
+                carousel_motor.stop_motor();
+                vTaskDelay(500);
+                if (!digitalRead(halef))
                 {
-                    if (sense == 1)
+                    sense = 0;
+                    back = 1;
+                    state = 1;
+                    encoder_flag.put(true);
+                    //Serial.println("properly zeroed");
+                }
+                else
+                {
+                    sense = 0;
+                }
+            }
+            else
+            {
+                if (back == 1 && sense == 0)
+                {
+                    carousel_motor.run_backwards(speed);
+                    if (!digitalRead(halef))
                     {
-                        carousel_motor.stop_motor();
-                        vTaskDelay(500);
-                        if (!digitalRead(halef))
-                        {
-                            zero.put(true);
-                            initalized.put(true);
-                            sense = 0;
-                            back = 1;
-                            state = 1;
-                            Serial.println("properly zeroed");
-                        }
-                        else
-                        {
-                            sense = 0;
-                        }
+                        sense = 1;
+                        back = 0;
                     }
-                    else
+                }
+                else if (back == 0 && sense == 0)
+                {
+                    carousel_motor.run_forwards(speed);
+                    if (!digitalRead(halef))
                     {
-                        if (back == 1 && sense == 0)
-                        {
-                            carousel_motor.run_backwards(speed);
-                            if (!digitalRead(halef))
-                            {
-                                sense = 1;
-                                back = 0;
-                            }
-                        }
-                        else if (back == 0 && sense == 0)
-                        {
-                            carousel_motor.run_forwards(speed);
-                            if (!digitalRead(halef))
-                            {
-                                sense = 1;
-                                back = 1;
-                            }
-                        }
+                        sense = 1;
+                        back = 1;
                     }
                 }
             }
+            
+        
         }
         
 
         else if (state == 1) //waiting state
         {
-            Serial.println("state 1");
-            vTaskDelay(1000);
-            // if (inst_recieved.get() == 1)
-            // {
-            //     state = 2;
-            //     corr = 0;
-            //     back = 1;
-            // }
-            encoder_flag.put(true);
-            state = 2;
-            corr = 0;
-            back = 1;
+            if ((inst_received.get() == 1) && (initialized.get() == 1))
+            {
+                state = 2;
+                corr = 0;
+                back = 1;
+                inst_received.put(false);
+            }
         }
 
         else if (state == 2) //moving to correct index
         {
             del = abs(current_position.get() - user_position.get());
-            Serial.println(del);
+            //Serial.println(del);
             if (corr == 1)
             {
                 carousel_motor.stop_motor();
@@ -113,6 +105,8 @@ void task_carousel (void* p_params)
                 if (del <= 10)
                 {
                     carousel_position.put(true);
+                    vTaskDelay(5000);
+                    close_flag.put(true);
                     corr = 0;
                     back = 1;
                     state = 1;

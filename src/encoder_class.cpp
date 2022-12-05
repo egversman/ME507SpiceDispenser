@@ -131,10 +131,10 @@ float Encoder :: get_position (bool last_A, bool last_B)
     new_A = Astate;
     new_B = Bstate;
 
-    pos = -3600*ticks/ppr; 
+    pos = -1300*ticks/ppr; 
     if (pos < 0)
     {
-        position = 790 + pos;
+        position = 799 + pos;
     }
     else
     {
