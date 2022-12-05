@@ -10,13 +10,14 @@
 
 void task_user (void* p_params)
 {
-    float startIdx = current_position.get();
+    //float startIdx = current_position.get();
+    float startIdx = 5;
     if (fmod(startIdx, 1) != 0) 
     {
         Serial.print("Error: Carousel is between indexes");
     }
     
-    float input[8][2] = {{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}, {5, 0}, {6, 0}, {7, 0}};
+    float input[8][2] = {{0, 1.1}, {1, 8.54}, {2, 7.32}, {3, 0}, {4, 0}, {5, 9.221}, {6, 15.23}, {7, 0}};
     SpicySort sortObj = SpicySort(input, (uint8_t) startIdx);
     SpicyLinkedList sortedLst = sortObj.sort();
 
