@@ -1,66 +1,59 @@
-// /** @file SpicyNode.cpp
-//  *  This file contains
-//  */
+/** @file SpicyNode.cpp
+ *  This file contains
+ */
 
-// #include <Arduino.h>
-// #include "SpicyNode.h"
+#include "SpicyNode.h"
 
-// /** @brief   Node class to represent an element of a SpicyLinkedList.
-//  *  @details
-//  */
-// class Node
-// {
-// public:     // public for testing only 
-// //protected:
-//     uint8_t spiceId;
-//     float amount;
-//     Node *next;
+/** @brief   Node class to represent an element of a SpicyLinkedList.
+ *  @details
+ */
 
-// //public:
-//     Node()
-//     {
-//         spiceId = 0;
-//         amount = 0;
-//         next = NULL;
-//     }
+uint8_t spiceId;
+float amount;
+Node *next;
 
-//     Node(uint8_t spiceId, float amount)
-//     {
-//         this->spiceId = spiceId;
-//         this->amount = amount;
-//         next = NULL;
-//     }
+Node::Node()
+{
+    this->spiceId = 0;
+    this->amount = 0;
+    this->next = NULL;
+}
 
-//     Node(uint8_t spiceId, float amount, Node *next)
-//     {
-//         this->spiceId = spiceId;
-//         this->amount = amount;
-//         this->next = next;
-//     }
+Node::Node(uint8_t spiceId, float amount)
+{
+    this->spiceId = spiceId;
+    this->amount = amount;
+    this->next = NULL;
+}
 
-//     uint8_t getSpiceId()
-//     {
-//         return spiceId;
-//     }
+Node::Node(uint8_t spiceId, float amount, Node *next)
+{
+    this->spiceId = spiceId;
+    this->amount = amount;
+    this->next = next;
+}
 
-//     float getAmount()
-//     {
-//         return amount;
-//     }
+uint8_t Node::getSpiceId()
+{
+    return spiceId;
+}
 
+float Node::getAmount()
+{
+    return amount;
+}
 
-//     void setAmount(float newAmount)
-//     {
-//         amount = newAmount;
-//     }
+void Node::setAmount(float newAmount)
+{
+    amount = newAmount;
+}
 
-//     Node *getNextNode()
-//     {
-//         return next;
-//     }
+Node *Node::getNextNode()
+{
+    return next;
+}
 
-//     void setNextNode(Node *newNext)
-//     {
-//         next = newNext;
-//     }
-// };
+void Node::setNextNode(Node *newNext)
+{
+    next = newNext;
+}
