@@ -9,49 +9,66 @@
 void task_door (void* p_params)
 {
 
-    user_position.put((float) 2000);
-    bool move;
-    float last_position = 0; 
-    String dispense = "yes";
-
-    uint8_t limit1 = 18;
-    uint8_t limit2 = 5;
+    uint8_t limit1 = 18; //18
+    uint8_t limit2 = 5; //5
     pinMode(limit1, INPUT_PULLUP);
     pinMode(limit2, INPUT_PULLUP);
 
 
-    uint8_t pA1 = 1;
-    uint8_t pA2 = 3;
+    uint8_t pA1 = 0; //1 
+    uint8_t pA2 = 4; //3
     uint32_t speed = 0;
     
     Motor_driver door_motor;
     door_motor.initialize(pA1, pA2);
 
+    Serial.println("here");
+     uint8_t state = 0;
+
     while(true)
     {
-        move = door_open.get();
-       
-        if(move == 1)
+        if (state == 0) // wait
         {
-            while(digitalRead(limit2) != 1)
+            if (disp_flag.get() == 1)
+            {
+                state = 1;
+            }
+            if(digitalRead(limit1 !=0))
+            {
+                door_motor.run_forwards(speed);
+                if(digitalRead(limit1 =0))
+                {
+                    door_motor.stop_motor();
+                }
+            }
+        }
+
+        else if (state == 1) //opens and closes door
+        {
+            if(digitalRead(limit2) != 1)
             {
                 door_motor.run_forwards(speed);
             }
 
             if(digitalRead(limit2) == 1)
             {
-                vTaskDelay(3000);
+                vTaskDelay(5000);
 
-                while(digitalRead(limit1) != 1)
+                if(digitalRead(limit1) != 1)
                 {
                     door_motor.run_backwards(speed);
                 }
 
-                door_open.put(0);
+                else if (digitalRead(limit1) == 1)
+                {
+                    state = 0;
+                    door_motor.stop_motor();
+                    disp_flag.put(false);
+                }
             }
         }
 
-        vTaskDelay(1);
+        vTaskDelay(100);
     }
     
 }

@@ -24,6 +24,8 @@ public:
         void run_forwards_pwm (uint16_t input_speed);
 
         void run_backwards_pwm (uint16_t input_speed);
+
+        void stop_motor(void);
     
       
 };

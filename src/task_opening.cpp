@@ -20,30 +20,88 @@ void task_opening (void* p_params)
 
     Motor_driver opening;
     opening.initialize(pB1, pB2);
+    uint8_t state = 2;
+    bool sense = 0;
+    bool back = 1;
 
     while(true)
     {
-        position = current_position.get(); 
-
-        if(position > user_position-100 && position < position+100)
+        if (state == 0) //closes opening
         {
-            if(digitalRead(halef) == LOW)
+
+            if (!digitalRead(halef))
+                {
+                    opening.run_backwards(speed);
+                    vTaskDelay(300);
+                    if (digitalRead(halef))
+                    {
+                        opening.stop_motor();
+                        state = 1;
+                        Serial.println("closed");
+                        close_flag.put(false);
+                    }
+                    else
+                    {
+                        sense = 0;
+                    }
+                }
+        }
+        else if (state == 1) //waits for proper position
+        {
+            if (carousel_position.get() == 1)
             {
-                opening.run_forwards(speed);
+                sense = 0;
+                state = 2;
+                carousel_position.put(false);
+            }
+            else if (close_flag.get() == 1)
+            {
+                state = 0;
             }
         }
-        else
+
+        else if (state == 2) // opens, targets hall effect
         {
-            if(digitalRead(halef) == HIGH)
+           if (sense == 1)
             {
-                opening.run_backwards(speed);
+                opening.stop_motor();
+                vTaskDelay(500);
+                if (!digitalRead(halef))
+                {
+                    sense = 0;
+                    back = 1;
+                    state = 1;
+                    Serial.println("open");
+                }
+                else
+                {
+                    sense = 0;
+                }
             }
             else
             {
-                vTaskDelay(3000);
+                if (back == 1 && sense == 0)
+                {
+                    opening.run_backwards(speed);
+                    if (!digitalRead(halef))
+                    {
+                        sense = 1;
+                        back = 0;
+                    }
+                }
+                else if (back == 0 && sense == 0)
+                {
+                    opening.run_forwards(speed);
+                    if (!digitalRead(halef))
+                    {
+                        sense = 1;
+                        back = 1;
+                    }
+                }
             }
+        
         }
-      
-        vTaskDelay(1);
+        
+    vTaskDelay(1);
     }
 }

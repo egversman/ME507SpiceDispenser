@@ -14,9 +14,10 @@ void task_carousel (void* p_params)
 
     uint8_t pB1 = 23;
     uint8_t pB2 = 22; 
-    uint16_t speed = 0;
+    uint16_t speed = 10;
 
     uint8_t halef = 32;
+    pinMode(halef, INPUT_PULLUP);
 
     Motor_driver carousel_motor;
 
@@ -27,51 +28,122 @@ void task_carousel (void* p_params)
     //end
 
     carousel_motor.initialize(pB1, pB2);
+    uint8_t state = 0;
+    bool sense = 0;
+    bool back = 1;
+    bool corr = 0;
+    float del = 0.0;
     while(true)
     {
-    // Initalization of the carousel which makes sure that it first
-    // zeros itself by moving to the hall effect sensor 
-    if(!initalized.get())
-    {
-        while(!zero.get())
+        if (state == 0) //initialize state
         {
-            carousel_motor.run_backwards(speed);
-
-            if(digitalRead(halef))
+            if(!initalized.get())
             {
-               
-                zero.put(true);
-                initalized.put(true);
-                Serial.print('Z');
-                //int i;
-                //for (i=0 ; i<=100; i++)
-                //{
-                //   carousel_motor.run_forwards(speed);
-                //   vTaskDelay(1);
-               // }
+                if(!zero.get())
+                {
+                    if (sense == 1)
+                    {
+                        carousel_motor.stop_motor();
+                        vTaskDelay(500);
+                        if (!digitalRead(halef))
+                        {
+                            zero.put(true);
+                            initalized.put(true);
+                            sense = 0;
+                            back = 1;
+                            state = 1;
+                            Serial.println("properly zeroed");
+                        }
+                        else
+                        {
+                            sense = 0;
+                        }
+                    }
+                    else
+                    {
+                        if (back == 1 && sense == 0)
+                        {
+                            carousel_motor.run_backwards(speed);
+                            if (!digitalRead(halef))
+                            {
+                                sense = 1;
+                                back = 0;
+                            }
+                        }
+                        else if (back == 0 && sense == 0)
+                        {
+                            carousel_motor.run_forwards(speed);
+                            if (!digitalRead(halef))
+                            {
+                                sense = 1;
+                                back = 1;
+                            }
+                        }
+                    }
+                }
             }
-            vTaskDelay(10);
-        }   
-    vTaskDelay(1);
-    }
-
-    // This will move the carousel to the spice that is loaded from the queue list
-    while(!inst_recieved.get() && !carousel_position.get() && zero.get())
-    { 
-        Serial.print('T');
-         position = current_position.get(); 
+        }
         
 
-        if(position < user_position.get())
+        else if (state == 1) //waiting state
         {
-            carousel_motor.run_backwards(speed);
+            Serial.println("state 1");
+            vTaskDelay(1000);
+            // if (inst_recieved.get() == 1)
+            // {
+            //     state = 2;
+            //     corr = 0;
+            //     back = 1;
+            // }
+            encoder_flag.put(true);
+            state = 2;
+            corr = 0;
+            back = 1;
         }
-        else 
+
+        else if (state == 2) //moving to correct index
         {
-            carousel_position.put(true);
+            del = abs(current_position.get() - user_position.get());
+            Serial.println(del);
+            if (corr == 1)
+            {
+                carousel_motor.stop_motor();
+                vTaskDelay(1000);
+                del = abs(current_position.get() - user_position.get());
+                if (del <= 10)
+                {
+                    carousel_position.put(true);
+                    corr = 0;
+                    back = 1;
+                    state = 1;
+                    Serial.println("right position");
+                }
+                else
+                {
+                    corr = 0;
+                }
+            }
+            else
+            {
+                if (back == 1 && corr == 0)
+                {
+                    carousel_motor.run_backwards(speed);
+                    if (del <= 10)
+                    {
+                        corr = 1;
+                        back = 0;
+                    }
+                }
+                else if (back == 0 && corr == 0)
+                {
+                    carousel_motor.run_forwards(speed);
+                    if (del <= 10)
+                    {
+                        corr = 1;
+                        back = 1;
+                    }
+                }
+            }
         }
-        vTaskDelay(1);
     }
-    }
-    vTaskDelay(10);
 }

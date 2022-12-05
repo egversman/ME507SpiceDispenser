@@ -49,3 +49,10 @@ void Motor_driver :: run_backwards_pwm (uint16_t input_speed)
     vTaskDelay(speed);
 
 }
+
+void Motor_driver :: stop_motor (void)
+{
+    digitalWrite(pinA, LOW);
+    digitalWrite(pinB, LOW);
+
+}
