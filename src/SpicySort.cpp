@@ -149,7 +149,7 @@ bool SpicySort::direction(uint8_t first)
 
     int8_t compare = startIdx - 3;
         if ((compare > 0 && first > compare) ||
-            (compare < 0 && first > compare + 7) ||
+            (compare < 0 && first > compare + 11) ||
             (compare == 0 && first <= startIdx))
         {
             spinDirection = false;
