@@ -1,13 +1,13 @@
 #include "SpicySort.h"
 
 // unordered_map<int, float> input;
-float input[12][2];
+float input[8][2];
 int startIdx;
 SpicyLinkedList sortedOutput;
 
-SpicySort::SpicySort(float input[12][2], uint8_t startIdx)
+SpicySort::SpicySort(float input[8][2], uint8_t startIdx)
 {
-    for (int i = 0; i < 12; i++)
+    for (int i = 0; i < 8; i++)
         for (int j = 0; j < 2; j++)
             this->input[i][j] = input[i][j];
     this->startIdx = startIdx;
@@ -19,7 +19,7 @@ SpicySort::SpicySort(float input[12][2], uint8_t startIdx)
  *  @param   input
  *  @param   startIdx
  */
-SpicyLinkedList SpicySort::sort(float input[12][2], uint8_t startIdx)
+SpicyLinkedList SpicySort::sort()
 {
     // Remove empty "rows" of 2d input array
     int i = 0;
@@ -34,7 +34,7 @@ SpicyLinkedList SpicySort::sort(float input[12][2], uint8_t startIdx)
     //  in sorted order of based on the rotation direction of the carousel.
     if (direction(first()))     // true --> ccw rotation
     {
-        for (uint8_t j = i; j < 12; j++)
+        for (uint8_t j = i; j < 8; j++)
         {
             if (input[j][1] != 0)
             {
@@ -82,7 +82,7 @@ SpicyLinkedList SpicySort::sort(float input[12][2], uint8_t startIdx)
     }
     else // false --> (cw rotation)
     {
-        for (uint8_t j = i; j < 12; j++)
+        for (uint8_t j = i; j < 8; j++)
         {
             if ((int) input[j][1] != 0)
             {
@@ -147,7 +147,7 @@ bool SpicySort::direction(uint8_t first)
         first = this->first();
     }
 
-    int8_t compare = startIdx - 5;
+    int8_t compare = startIdx - 3;
         if ((compare > 0 && first > compare) ||
             (compare < 0 && first > compare + 11) ||
             (compare == 0 && first <= startIdx))
@@ -167,23 +167,23 @@ uint8_t SpicySort::first()
     // Find the nearest spiceId in the input map to the startIdx.
     // Integer, first, represents the first location the in the carousel's
     //  path
-    uint8_t firstIdx = 12;     // store firstIdx result
-    uint8_t firstDist = 12;
-    uint8_t inputIdx = 12;
+    uint8_t firstIdx = 8;     // store firstIdx result
+    uint8_t firstDist = 8;
+    uint8_t inputIdx = 8;
     uint8_t dist = 0;
 
-    for (uint8_t i = 0; i <= 11; i++)
+    for (uint8_t i = 0; i <= 7; i++)
     {
         inputIdx = (uint8_t) input[i][0];
         if ((uint8_t) input[i][1] != 0) 
         {
             dist = abs(startIdx - inputIdx);
-            if (firstDist > dist || firstDist > (12 - dist)) 
+            if (firstDist > dist || firstDist > (8 - dist)) 
             {
                 firstIdx = inputIdx;
-                if (dist - 12 < dist)
+                if (dist - 8 < dist)
                 {
-                    firstDist = 12 - dist;
+                    firstDist = 8 - dist;
                 } else 
                 {
                     firstDist = dist;

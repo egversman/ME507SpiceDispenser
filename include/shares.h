@@ -7,7 +7,8 @@ extern Share<float> current_position;
 extern Queue<float> current_weight;
 
 //Data Shares 
-extern Share<float> user_position;
+extern Queue<float> user_position;
+extern Queue<float> user_weight;
 //end
 
 extern Share<bool> door_open;

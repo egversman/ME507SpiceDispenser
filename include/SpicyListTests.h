@@ -1,3 +1,9 @@
+/** @file SpicyListTests.h
+ *  This file contains function function definitions for SpicyListTests.cpp. To
+ *  run SpicyListTests.cpp, uncomment the code in this file, SpicyListTests.cpp,
+ *  
+ */
+
 // #ifndef LIST_TESTS_H
 // #define LIST_TESTS_H
 
