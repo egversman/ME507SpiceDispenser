@@ -8,7 +8,6 @@
 #include <SpicySort.h> 
 #include <SpicyLinkedList.h> 
 
-
 void task_user (void* p_params)
 {
     float startIdx = current_position.get();
@@ -17,8 +16,8 @@ void task_user (void* p_params)
         Serial.print("Error: Carousel is between indexes");
     }
     
-    float input[8][2];
-    SpicySort sortObj = SpicySort(input, (int) startIdx);
+    float input[8][2] = {{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}, {5, 0}, {6, 0}, {7, 0}};
+    SpicySort sortObj = SpicySort(input, (uint8_t) startIdx);
     SpicyLinkedList sortedLst = sortObj.sort();
 
     while(true)
@@ -30,7 +29,13 @@ void task_user (void* p_params)
             user_weight.put(removed->getAmount());
         }
 
-        vTaskDelay(100);
+        Serial.print(user_position.get());
+        Serial.print("\t");
+        Serial.println(user_weight.get());
+
+        vTaskDelay(1000);
     }
      
 }
+
+

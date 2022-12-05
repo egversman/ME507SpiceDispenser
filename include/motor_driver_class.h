@@ -1,6 +1,5 @@
 #include <Arduino.h>
 
-
 class Motor_driver
 {
 
