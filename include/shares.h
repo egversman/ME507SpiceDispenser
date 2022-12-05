@@ -16,7 +16,7 @@ extern Share<bool> door_open;
 //Initialized Flags
 extern Share<bool> initalized;
 
-// Carosell Flags
+// Carousel Flags
 extern Share<bool> inst_recieved;
 extern Share<bool> carousel_position;
 extern Share<bool> zero;
