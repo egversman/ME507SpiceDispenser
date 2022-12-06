@@ -1,71 +1,105 @@
-// #include <Arduino.h>
-// #include "SpicyLinkedList.cpp"
-// #include <iostream>
-// #include <string>
-// #include <unordered_map>
-// using namespace std;
+/** @file SpicyNode.cpp
+ *  This file contains
+ */
 
-// bool test01_empty();
-// bool test02_append();
-// bool test03_insert();
-// bool test04_pop();
-// bool test05_remove();
-// bool test06_inserts();
-// bool test07_insertRemove();
-// bool test08_setAmount();
+// #include "SpicyListTests.h"
 
 // bool test01_empty()
 // {
-//     cout << "Testing empty lists" << endl;
+//     cout << "\n***************** LIST TESTS ***************************************************\n";
+//     cout << "\nTest 1: Testing empty lists" << endl;
 
 //     SpicyLinkedList lst;
 
 //     if (lst.size == 0)
 //     {
-//         cout << "Test 1 passed" << endl;
+//         cout << "PASS\n"
+//              << endl;
 //         return true;
 //     }
 
-//     cout << "size != " + to_string(lst.size) << endl;
-
+//     cout << "FAIL: size != " + to_string(lst.size) + "\n"
+//          << endl;
 //     return false;
 // }
 
-// bool test02_append()
+// bool test02_getNextNode()
 // {
-//     cout << "Testing appending onto lists" << endl;
+//     cout << "Test 2: Testing getting next node in list" << endl;
+
+//     SpicyLinkedList lst;
+
+//     lst.append(0, 1.0);
+//     lst.append(1, 2.0);
+//     lst.append(2, 3.0);
+
+//     Node *curr = lst.head;
+//     if (curr->getNextNode()->getAmount() != 2.0)
+//     {
+//         cout << "FAIL: Amount at next != " + to_string(lst.getAmount(1)) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     curr = curr->getNextNode();
+//     if (curr->getNextNode()->getAmount() != 3.0)
+//     {
+//         cout << "FAIL: Amount at next != " + to_string(lst.getAmount(1)) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     curr = curr->getNextNode();
+//     if (curr->getNextNode() != NULL)
+//     {
+//         cout << "FAIL: Amount at next != " + to_string(lst.getAmount(1)) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     cout << "PASS\n"
+//          << endl;
+//     return true;
+// }
+
+// bool test03_append()
+// {
+//     cout << "Test 3: Testing appending onto lists" << endl;
 
 //     SpicyLinkedList lst;
 
 //     lst.append(0, 1.0);
 //     lst.append(1, 2.0);
 
-//     if (lst.size != 2)
-//     {
-//         cout << "size != " + to_string(lst.size) << endl;
-//         return false;
-//     }
-
 //     if (lst.getAmount(0) != 1.0)
 //     {
-//         cout << "Amount at 0 != " + to_string(lst.getAmount(0)) << endl;
+//         cout << "FAIL: Amount at 0 != " + to_string(lst.getAmount(0)) + "\n"
+//              << endl;
 //         return false;
 //     }
 
 //     if (lst.getAmount(1) != 2.0)
 //     {
-//         cout << "Amount at 1 != " + to_string(lst.getAmount(1)) << endl;
+//         cout << "FAIL: Amount at 1 != " + to_string(lst.getAmount(1)) + "\n"
+//              << endl;
 //         return false;
 //     }
 
-//     cout << "Test 2 passed" << endl;
+//     if (lst.size != 2)
+//     {
+//         cout << "FAIL: size != " + to_string(lst.size) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     cout << "PASS\n"
+//          << endl;
 //     return true;
 // }
 
-// bool test03_insert()
+// bool test04_insert()
 // {
-//     cout << "Testing inserting into lists" << endl;
-
+//     cout << "Test 4: Testing inserting into lists" << endl;
 //     SpicyLinkedList lst;
 
 //     lst.insert(0, 1, 1.0);
@@ -73,44 +107,50 @@
 //     lst.insert(2, 4, 4.0);
 //     lst.insert(2, 3, 3.0);
 
-//     if (lst.size != 4)
-//     {
-//         cout << "size != " + to_string(lst.size) << endl;
-//         return false;
-//     }
-
 //     if (lst.getAmount(0) != 1.0)
 //     {
-//         cout << "Amount at 0 != " + to_string(lst.getAmount(0)) << endl;
+//         cout << "FAIL: Amount at 0 != " + to_string(lst.getAmount(0)) + "\n"
+//              << endl;
 //         return false;
 //     }
 
 //     if (lst.getAmount(1) != 2.0)
 //     {
 
-//         cout << "Amount at 1 != " + to_string(lst.getAmount(1)) << endl;
+//         cout << "FAIL: Amount at 1 != " + to_string(lst.getAmount(1)) + "\n"
+//              << endl;
 //         return false;
 //     }
 
 //     if (lst.getAmount(2) != 3.0)
 //     {
-//         cout << "Amount at 2 != " + to_string(lst.getAmount(2)) << endl;
+//         cout << "FAIL: Amount at 2 != " + to_string(lst.getAmount(2)) + "\n"
+//              << endl;
 //         return false;
 //     }
 
 //     if (lst.getAmount(3) != 4.0)
 //     {
-//         cout << "Amount at 3 != " + to_string(lst.getAmount(3)) << endl;
+//         cout << "FAIL: Amount at 3 != " + to_string(lst.getAmount(3)) + "\n"
+//              << endl;
 //         return false;
 //     }
 
-//     cout << "Test 3 passed" << endl;
+//     if (lst.size != 4)
+//     {
+//         cout << "FAIL: size != " + to_string(lst.size) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     cout << "PASS\n"
+//          << endl;
 //     return true;
 // }
 
-// bool test04_pop()
+// bool test05_pop()
 // {
-//     cout << "Testing popping from lists" << endl;
+//     cout << "Test 5: Testing popping from lists" << endl;
 
 //     SpicyLinkedList lst;
 
@@ -120,46 +160,52 @@
 //     lst.append(3, 4.0);
 
 //     Node *removed = lst.pop();
+//     if (removed->getAmount() != 1.0)
+//     {
+//         cout << "FAIL: 1st pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = lst.pop();
+//     if (removed->getAmount() != 2.0)
+//     {
+//         cout << "FAIL: 2nd pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = lst.pop();
 //     if (removed->getAmount() != 3.0)
 //     {
-//         cout << "1st pop amount != " + to_string(removed->getAmount()) << endl;
+//         cout << "FAIL: 3rd pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
 //         return false;
 //     }
 
-//     Node *removed1 = lst.pop();
-//     if (removed1->getAmount() != 3.0)
+//     removed = lst.pop();
+//     if (removed->getAmount() != 4.0)
 //     {
-//         cout << "2nd pop amount != " + to_string(removed1->getAmount()) << endl;
+//         cout << "FAIL: 4th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
 //         return false;
 //     }
 
-//     Node *removed2 = lst.pop();
-//     if (removed2->getAmount() != 3.0)
+//     if (lst.getSize() != 0)
 //     {
-//         cout << "3rd pop amount != " + to_string(removed2->getAmount()) << endl;
+//         cout << "FAIL: size != " + to_string(lst.size) + "\n"
+//              << endl;
 //         return false;
 //     }
 
-//     Node *removed3 = lst.pop();
-//     if (removed->getAmount() != 3.0)
-//     {
-//         cout << "4th pop amount != " + to_string(removed3->getAmount()) << endl;
-//         return false;
-//     }
-
-//     if (lst.size != 0)
-//     {
-//         cout << "size != " + to_string(lst.size) << endl;
-//         return false;
-//     }
-
-//     cout << "Test 4 passed" << endl;
+//     cout << "PASS\n"
+//          << endl;
 //     return true;
 // }
 
-// bool test05_remove()
+// bool test06_remove()
 // {
-//     cout << "Testing removing from lists" << endl;
+//     cout << "Test 6: Testing removing from lists" << endl;
 
 //     SpicyLinkedList lst;
 
@@ -171,103 +217,117 @@
 //     Node *removed = lst.remove(2);
 //     if (removed->getAmount() != 3.0)
 //     {
-//         cout << "Amount at 2 != " + to_string(removed->getAmount()) << endl;
+//         cout << "FAIL: Amount at 2 (1) != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
 //         return false;
 //     }
 
-//     Node *removed1 = lst.remove(2);
-//     if (removed1->getAmount() != 3.0)
+//     removed = lst.remove(2);
+//     if (removed->getAmount() != 4.0)
 //     {
-//         cout << "Amount at 2 != " + to_string(removed1->getAmount()) << endl;
+//         cout << "FAIL: Amount at 2 (2) != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
 //         return false;
 //     }
 
-//     Node *removed2 = lst.remove(0);
-//     if (removed2->getAmount() != 3.0)
+//     removed = lst.remove(0);
+//     if (removed->getAmount() != 1.0)
 //     {
-//         cout << "Amount at 0 != " + to_string(removed2->getAmount()) << endl;
+//         cout << "FAIL: Amount at 0 (3) != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
 //         return false;
 //     }
 
-//     Node *removed3 = lst.remove(0);
-//     if (removed3->getAmount() != 3.0)
+//     removed = lst.remove(0);
+//     if (removed->getAmount() != 2.0)
 //     {
-//         cout << "Amount at 0 != " + to_string(removed3->getAmount()) << endl;
+//         cout << "FAIL: Amount at 0 (4) != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
 //         return false;
 //     }
 
 //     if (lst.size != 0)
 //     {
-//         cout << "size != " + to_string(lst.size) << endl;
+//         cout << "FAIL: size != " + to_string(lst.size) + "\n"
+//              << endl;
 //         return false;
 //     }
 
-//     cout << "Test 5 passed" << endl;
+//     cout << "PASS\n"
+//          << endl;
 //     return true;
 // }
 
-// bool test06_inserts()
+// bool test07_inserts()
 // {
-//     cout << "Testing adding to lists" << endl;
+//     cout << "Test 7: Testing adding to lists" << endl;
 
 //     SpicyLinkedList lst;
 
 //     lst.insert(0, 0, 1.0);
 //     lst.insert(1, 1, 2.0);
-//     lst.insert(2, 4, 4.0);
+//     lst.insert(2, 4, 5.0);
 //     lst.insert(3, 5, 6.0);
 //     lst.insert(2, 3, 4.0);
 //     lst.insert(2, 2, 3.0);
 
-//     if (lst.size != 4)
-//     {
-//         cout << "size != " + to_string(lst.size) << endl;
-//         return false;
-//     }
-
 //     if (lst.getAmount(0) != 1.0)
 //     {
-//         cout << "Amount at 0 != " + to_string(lst.getAmount(0)) << endl;
+//         cout << "FAIL: Amount at 0 != " + to_string(lst.getAmount(0)) + "\n"
+//              << endl;
 //         return false;
 //     }
 
 //     if (lst.getAmount(1) != 2.0)
 //     {
-//         cout << "Amount at 1 != " + to_string(lst.getAmount(1)) << endl;
+//         cout << "FAIL: Amount at 1 != " + to_string(lst.getAmount(1)) + "\n"
+//              << endl;
 //         return false;
 //     }
 
 //     if (lst.getAmount(2) != 3.0)
 //     {
-//         cout << "Amount at 2 != " + to_string(lst.getAmount(2)) << endl;
+//         cout << "FAIL: Amount at 2 != " + to_string(lst.getAmount(2)) + "\n"
+//              << endl;
 //         return false;
 //     }
 
 //     if (lst.getAmount(3) != 4.0)
 //     {
-//         cout << "Amount at 3 != " + to_string(lst.getAmount(3)) << endl;
+//         cout << "FAIL: Amount at 3 != " + to_string(lst.getAmount(3)) + "\n"
+//              << endl;
 //         return false;
 //     }
 
 //     if (lst.getAmount(4) != 5.0)
 //     {
-//         cout << "Amount at 4 != " + to_string(lst.getAmount(4)) << endl;
+//         cout << "FAIL: Amount at 4 != " + to_string(lst.getAmount(4)) + "\n"
+//              << endl;
 //         return false;
 //     }
 
 //     if (lst.getAmount(5) != 6.0)
 //     {
-//         cout << "Amount at 5 != " + to_string(lst.getAmount(5)) << endl;
+//         cout << "FAIL: Amount at 5 != " + to_string(lst.getAmount(5)) + "\n"
+//              << endl;
 //         return false;
 //     }
 
-//     cout << "Test 6 passed" << endl;
+//     if (lst.size != 6)
+//     {
+//         cout << "FAIL: size != " + to_string(lst.size) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     cout << "PASS\n"
+//          << endl;
 //     return true;
 // }
 
-// bool test07_insertRemove()
+// bool test08_insertRemove()
 // {
-//     cout << "Testing inserting and removing" << endl;
+//     cout << "Test 8: Testing inserting and removing" << endl;
 
 //     SpicyLinkedList lst;
 
@@ -280,51 +340,58 @@
 //     Node *removed = lst.remove(2);
 //     if (removed->getAmount() != 3.0)
 //     {
-//         cout << "Amount at 2 != " + to_string(removed->getAmount()) << endl;
+//         cout << "FAIL: Amount at 2 != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
 //         return false;
 //     }
 
-//     Node *removed1 = lst.remove(3);
-//     if (removed1->getAmount() != 5.0)
+//     removed = lst.remove(3);
+//     if (removed->getAmount() != 5.0)
 //     {
-//         cout << "Amount at 3 != " + to_string(removed1->getAmount()) << endl;
+//         cout << "FAIL: Amount at 3 != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
 //         return false;
 //     }
 
-//     Node *removed2 = lst.remove(1);
-//     if (removed2->getAmount() != 2.0)
+//     removed = lst.remove(1);
+//     if (removed->getAmount() != 2.0)
 //     {
-//         cout << "Amount at 1 != " + to_string(removed2->getAmount()) << endl;
+//         cout << "FAIL: Amount at 1 != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
 //         return false;
 //     }
 
-//     Node *removed3 = lst.remove(1);
-//     if (removed3->getAmount() != 4.0)
+//     removed = lst.remove(1);
+//     if (removed->getAmount() != 4.0)
 //     {
-//         cout << "Amount at 1 != " + to_string(removed3->getAmount()) << endl;
+//         cout << "FAIL: Amount at 1 != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
 //         return false;
 //     }
 
-//     Node *removed4 = lst.remove(0);
-//     if (removed4->getAmount() != 1.0)
+//     removed = lst.remove(0);
+//     if (removed->getAmount() != 1.0)
 //     {
-//         cout << "Amount at 00!= " + to_string(removed4->getAmount()) << endl;
+//         cout << "FAIL: Amount at 00!= " + to_string(removed->getAmount()) + "\n"
+//              << endl;
 //         return false;
 //     }
 
 //     if (lst.size != 0)
 //     {
-//         cout << "size != " + to_string(lst.size) << endl;
+//         cout << "FAIL: size != " + to_string(lst.size) + "\n"
+//              << endl;
 //         return false;
 //     }
 
-//     cout << "Test 7 passed" << endl;
+//     cout << "PASS\n"
+//          << endl;
 //     return true;
 // }
 
-// bool test08_setAmount()
+// bool test09_setAmount()
 // {
-//     cout << "Testing setting amount in a node" << endl;
+//     cout << "Test 9: Testing setting amount in a node" << endl;
 
 //     SpicyLinkedList lst;
 
@@ -335,339 +402,951 @@
 
 //     if (lst.getAmount(1) != 5.0)
 //     {
-//         cout << "Amount at 0 != " + to_string(lst.getAmount(1)) << endl;
+//         cout << "FAIL: Amount at 0 != " + to_string(lst.getAmount(1)) + "\n"
+//              << endl;
 //         return false;
 //     }
 
-//     cout << "Test 8 passed" << endl;
+//     cout << "PASS\n"
+//          << endl;
 //     return true;
 // }
 
-// // int main()
-// // {
-// //     test01_empty();
-//     // test02_append();
-//     // test03_insert();
-//     // test04_pop();
-//     // test05_remove();
-//     // test06_inserts();
-//     // test07_insertRemove();
-//     // test08_setAmount();
+// bool test10_sortDirectionCcw1()
+// {
+//     cout << "***************** SORT TESTS ***************************************************\n\n";
+//     cout << "----------------- Sort Helper Function Tests: Rotation Direction ---------------\n\n";
+//     cout << "Test 10: Testing rotation direction function\n";
 
-// //     return 0;
-// // }
+//     int startIdx = 5;
+//     float input[12][2];
 
-// // bool test08_sortCcw()
-// // {
-// //     cout << "Testing sorting input map into list" << endl;
+//     SpicySort sortObj = SpicySort(input, startIdx);
+//     bool sortDirection = sortObj.direction(7);
 
-// //     uint8_t startIdx = 0;
-// //     unordered_map<int, float> input;
-// //     input[6] = 7.0;
-// //     input[10] = 11.0;
-// //     input[1] = 2.0;
-// //     input[2] = 3.0;
+//     if (!sortDirection)
+//     {
+//         cout << "FAIL: Sort direction should be true (ccw)\n"
+//              << endl;
+//         return false;
+//     }
 
-// //     SpicyLinkedList *sortedLst = SpicySort(input, startIdx);
+//     cout << "PASS\n"
+//          << endl;
+//     return true;
+// }
 
-// //     if (sortedLst->size() != 4)
-// //     {
-// //         cout << "starting size != " + to_string(sortedLst->size()) << endl;
-// //         return false;
-// //     }
+// bool test11_sortDirectionCcw2()
+// {
+//     cout << "Test 11: Testing rotation direction function" << endl;
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 2.0)
-// //     {
-// //         cout << "1st pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     int startIdx = 10;
+//     float input[12][2];
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 3.0)
-// //     {
-// //         cout << "2nd pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     SpicySort sortObj = SpicySort(input, startIdx);
+//     bool sortDirection = sortObj.direction(1);
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 7.0)
-// //     {
-// //         cout << "3rd pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     if (!sortDirection)
+//     {
+//         cout << "FAIL: Sort direction should be true (ccw)\n"
+//              << endl;
+//         return false;
+//     }
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 11.0)
-// //     {
-// //         cout << "4th pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     cout << "PASS\n"
+//          << endl;
+//     return true;
+// }
 
-// //     if (sortedLst->size() != 0)
-// //     {
-// //         cout << "ending size != " + to_string(sortedLst->size()) << endl;
-// //         return false;
-// //     }
-// // }
+// bool test12_sortDirectionCw1()
+// {
+//     cout << "Test 12: Testing rotation direction function" << endl;
 
-// //  bool test09_sortCw()
-// // {
-// //     cout << "Testing sorting input map into list" << endl;
+//     int startIdx = 0;
+//     float input[12][2];
 
-// //     uint8_t startIdx = 7;
-// //     unordered_map<int, float> input;
-// //     input[6] = 7.0;
-// //     input[10] = 11.0;
-// //     input[1] = 2.0;
-// //     input[2] = 3.0;
+//     SpicySort sortObj = SpicySort(input, startIdx);
+//     bool sortDirection = sortObj.direction(10);
 
-// //     SpicyLinkedList *sortedLst = SpicySort(input, startIdx);
+//     if (sortDirection)
+//     {
+//         cout << "FAIL: Sort direction should be false (cw)\n"
+//              << endl;
+//         return false;
+//     }
 
-// //     if (sortedLst->size() != 4)
-// //     {
-// //         cout << "starting size != " + to_string(sortedLst->size()) << endl;
-// //         return false;
-// //     }
+//     cout << "PASS\n"
+//          << endl;
+//     return true;
+// }
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 7.0)
-// //     {
-// //         cout << "1st pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+// bool test13_sortDirectionCw2()
+// {
+//     cout << "Test 13: Testing rotation direction function" << endl;
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 3.0)
-// //     {
-// //         cout << "2nd pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     int startIdx = 5;
+//     float input[12][2];
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 2.0)
-// //     {
-// //         cout << "3rd pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     SpicySort sortObj = SpicySort(input, startIdx);
+//     bool sortDirection = sortObj.direction(2);
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 11.0)
-// //     {
-// //         cout << "4th pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     if (sortDirection)
+//     {
+//         cout << "FAIL: Sort direction should be false (cw)\n"
+//              << endl;
+//         return false;
+//     }
 
-// //     if (sortedLst->size() != 0)
-// //     {
-// //         cout << "ending size != " + to_string(sortedLst->size()) << endl;
-// //         return false;
-// //     }
-// // }
+//     cout << "PASS\n"
+//          << endl;
+//     return true;
+// }
 
-// //     bool test10_bigSortCcw()
-// // {
-// //     cout << "Testing sorting input map into list" << endl;
+// bool test14_sortFirstId_1()
+// {
+//     cout << "----------------- Sort Helper Function Tests: Find First Index -----------------\n\n";
+//     cout << "\nTest 14: Testing function for first node in sorted list\n";
 
-// //     uint8_t startIdx = 0;
-// //     unordered_map<int, float> input;
-// //     input[6] = 7.0;
-// //     input[10] = 11.0;
-// //     input[1] = 2.0;
-// //     input[2] = 3.0;
-// //     input[5] = 6.0;
-// //     input[7] = 8.0;
-// //     input[3] = 4.0;
-// //     input[0] = 1.0;
-// //     input[9] = 10.0;
-// //     input[8] = 9.0;
+//     int startIdx = 0;
+//     float input[12][2] = {{0, 0}, {1, 2.2}, {2, 3.3}, {3, 0}, {4, 0}, {5, 0}, 
+//                           {6, 7.7}, {7, 0}, {8, 0}, {9, 0}, {10, 11.1}, {11, 0},};
 
-// //     SpicyLinkedList *sortedLst = SpicySort(input, startIdx);
+//     SpicySort sortObj = SpicySort(input, startIdx);
+//     int firstId = sortObj.first();
 
-// //     if (sortedLst->size() != 10)
-// //     {
-// //         cout << "starting size != " + to_string(sortedLst->size()) << endl;
-// //         return false;
-// //     }
+//     if (firstId != 1)
+//     {
+//         cout << "FAIL: First node ID != " + to_string(firstId) + "\n"
+//              << endl;
+//         return false;
+//     }
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 1.0)
-// //     {
-// //         cout << "1st pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     cout << "PASS\n"
+//          << endl;
+//     return true;
+// }
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 2.0)
-// //     {
-// //         cout << "2nd pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+// bool test15_sortFirstId_2()
+// {
+//     cout << "Test 15: Testing function for first node in sorted list" << endl;
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 3.0)
-// //     {
-// //         cout << "3rd pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     int startIdx = 5;
+//     float input[12][2] = {{0, 0}, {1, 2.2}, {2, 3.3}, {3, 0}, {4, 0}, {5, 0}, 
+//                           {6, 7.7}, {7, 0}, {8, 0}, {9, 0}, {10, 11.1}, {11, 0},};
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 4.0)
-// //     {
-// //         cout << "4th pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     SpicySort sortObj = SpicySort(input, startIdx);
+//     int firstId = sortObj.first();
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 6.0)
-// //     {
-// //         cout << "3rd pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     if (firstId != 6)
+//     {
+//         cout << "FAIL: First node ID != " + to_string(firstId) + "\n"
+//              << endl;
+//         return false;
+//     }
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 7.0)
-// //     {
-// //         cout << "4th pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     cout << "PASS\n"
+//          << endl;
+//     return true;
+// }
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 8.0)
-// //     {
-// //         cout << "3rd pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+// bool test16_sortFirstId_3()
+// {
+//     cout << "Test 16: Testing function for first node in sorted list" << endl;
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 9.0)
-// //     {
-// //         cout << "4th pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     int startIdx = 8;
+//     float input[12][2] = {{0, 0}, {1, 2.2}, {2, 3.3}, {3, 0}, {4, 0}, {5, 0}, 
+//                           {6, 7.7}, {7, 0}, {8, 0}, {9, 0}, {10, 11.1}, {11, 0},};
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 10.0)
-// //     {
-// //         cout << "3rd pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     SpicySort sortObj = SpicySort(input, startIdx);
+//     int firstId = sortObj.first();
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 11.0)
-// //     {
-// //         cout << "4th pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     if (firstId != 6)
+//     {
+//         cout << "FAIL: First node ID != " + to_string(firstId) + "\n"
+//              << endl;
+//         return false;
+//     }
 
-// //     if (sortedLst->size() != 0)
-// //     {
-// //         cout << "ending size != " + to_string(sortedLst->size()) << endl;
-// //         return false;
-// //     }
-// // }
+//     cout << "PASS\n"
+//          << endl;
+//     return true;
+// }
 
-// //  bool test11_bigSortCw()
-// // {
-// //     cout << "Testing sorting input map into list" << endl;
+// bool test17_sortCcw()
+// {
+//     cout << "----------------- Main Sort Tests ----------------------------------------------\n\n";
+//     cout << "\nTest 17: Testing sorting input map into list\n";
 
-// //     uint8_t startIdx = 11;
-// //     unordered_map<int, float> input;
-// //     input[6] = 7.0;
-// //     input[10] = 11.0;
-// //     input[1] = 2.0;
-// //     input[2] = 3.0;
-// //     input[5] = 6.0;
-// //     input[7] = 8.0;
-// //     input[3] = 4.0;
-// //     input[9] = 10.0;
-// //     input[8] = 9.0;
-// //     input[4] = 5.0;
+//     int startIdx = 0;
+//     float input[12][2] = {{0, 0}, {1, 2.2}, {2, 3.3}, {3, 0}, {4, 0}, {5, 0}, 
+//                           {6, 7.7}, {7, 0}, {8, 0}, {9, 0}, {10, 11.1}, {11, 0},};
 
-// //     SpicyLinkedList *sortedLst = SpicySort(input, startIdx);
+//     SpicySort sortObj = SpicySort(input, startIdx);
 
-// //     if (sortedLst->size() != 10)
-// //     {
-// //         cout << "starting size != " + to_string(sortedLst->size()) << endl;
-// //         return false;
-// //     }
+//     if (sortObj.first() != 1)
+//     {
+//         cout << "FAIL: First node ID != " + to_string(sortObj.first()) + "\n"
+//              << endl;
+//         return false;
+//     }
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 11.0)
-// //     {
-// //         cout << "1st pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     if (!sortObj.direction(sortObj.first()))
+//     {
+//         cout << "FAIL: Sort direction should be true (ccw)\n"
+//              << endl;
+//         return false;
+//     }
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 10.0)
-// //     {
-// //         cout << "2nd pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     SpicyLinkedList sortedLst = sortObj.sort(input, startIdx);
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 9.0)
-// //     {
-// //         cout << "3rd pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     cout << "Expected:\t(1, 2.2) --> (2, 3.3) --> (6, 7.7) --> (10, 11.1)\nActual:  \t";
+//     sortedLst.print();
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 8.0)
-// //     {
-// //         cout << "4th pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     if (sortedLst.getSize() != 4)
+//     {
+//         cout << "FAIL: starting size != " + to_string(sortedLst.getSize()) + "\n"
+//              << endl;
+//         return false;
+//     }
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 7.0)
-// //     {
-// //         cout << "3rd pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     Node *removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 2.2))
+//     {
+//         cout << "FAIL: 1st pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 6.0)
-// //     {
-// //         cout << "4th pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 3.3))
+//     {
+//         cout << "FAIL: 2nd pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 5.0)
-// //     {
-// //         cout << "3rd pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 7.7))
+//     {
+//         cout << "FAIL: 3rd pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 4.0)
-// //     {
-// //         cout << "4th pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 11.1))
+//     {
+//         cout << "FAIL: 4th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
 
-// //     Node *removed = sortedLst->pop();
-// //     if (removed->getAmount() != 3.0)
-// //     {
-// //         cout << "3rd pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     if (sortedLst.getSize() != 0)
+//     {
+//         cout << "FAIL: ending size != " + to_string(sortedLst.getSize()) + "\n"
+//              << endl;
+//         return false;
+//     }
 
-// //     Node *removed = sortedLst->pop();3
-// //     if (removed->getAmount() != 2.0)
-// //     {
-// //         cout << "4th pop amount != " + to_string(removed->getAmount()) << endl;
-// //         return false;
-// //     }
+//     cout << "PASS\n"
+//          << endl;
+//     return true;
+// }
 
-// //     if (sortedLst->size() != 0)
-// //     {
-// //         cout << "ending size != " + to_string(sortedLst->size()) << endl;
-// //         return false;
-// //     }
-// // }
+// bool test18_sortCw()
+// {
+//     cout << "Test 18: Testing sorting input map into list" << endl;
 
-// // methods
-// // exceptions
+//     int startIdx = 7;
+//     float input[12][2] = {{0, 0}, {1, 2.2}, {2, 3.3}, {3, 0}, {4, 0}, {5, 0}, 
+//                           {6, 7.7}, {7, 0}, {8, 0}, {9, 0}, {10, 11.1}, {11, 0},};
+
+//     SpicySort sortObj = SpicySort(input, startIdx);
+
+//     if (sortObj.first() != 6)
+//     {
+//         cout << "FAIL: First node ID != " + to_string(sortObj.first()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     if (sortObj.direction(sortObj.first()))
+//     {
+//         cout << "FAIL: Sort direction should be false (cw)\n"
+//              << endl;
+//         return false;
+//     }
+
+//     SpicyLinkedList sortedLst = sortObj.sort(input, startIdx);
+
+//     cout << "Expected:\t(6, 7.7) --> (2, 3.3) --> (1, 2.2) --> (10, 11.1)\nActual:  \t";
+//     sortedLst.print();
+
+//     if (sortedLst.getSize() != 4)
+//     {
+//         cout << "FAIL: Starting size != " + to_string(sortedLst.getSize()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     Node *removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 7.7))
+//     {
+//         cout << "FAIL: 1st pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 3.3))
+//     {
+//         cout << "FAIL: 2nd pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 2.2))
+//     {
+//         cout << "FAIL: 3rd pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 11.1))
+//     {
+//         cout << "FAIL: 4th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     if (sortedLst.getSize() != 0)
+//     {
+//         cout << "FAIL: Ending size != " + to_string(sortedLst.getSize()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     cout << "PASS\n"
+//          << endl;
+//     return true;
+// }
+
+// bool test19_bigSortCcw()
+// {
+//     cout << "Test 19: Testing sorting input map into list" << endl;
+
+//     int startIdx = 0;
+//     float input[12][2] = {{0, 0}, {1, 2.2}, {2, 3.3}, {3, 4.4}, {4, 5.5}, {5, 6.6}, 
+//                           {6, 7.7}, {7, 8.8}, {8, 9.9}, {9, 10}, {10, 11.1}, {11, 0},};
+
+//     SpicySort sortObj = SpicySort(input, startIdx);
+
+//     if (sortObj.first() != 1)
+//     {
+//         cout << "FAIL: First node ID != " + to_string(sortObj.first()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     if (!sortObj.direction(sortObj.first()))
+//     {
+//         cout << "FAIL: Sort direction should be true (ccw)\n"
+//              << endl;
+//         return false;
+//     }
+
+//     SpicyLinkedList sortedLst = sortObj.sort(input, startIdx);
+
+//     cout << "Expected:\t(1, 2.2) --> (2, 3.3) --> (3, 4.4) --> (4, 5.5) --> (5, 6.6) --> (6, 7.7) --> (7, 8.8) --> (8, 9.9) --> (9, 10) --> (10, 11.1)\nActual:  \t";
+//     sortedLst.print();
+
+//     if (sortedLst.getSize() != 10)
+//     {
+//         cout << "FAIL: Starting size != " + to_string(sortedLst.getSize()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     Node *removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 2.2))
+//     {
+//         cout << "FAIL: 1st pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 3.3))
+//     {
+//         cout << "FAIL: 2nd pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 4.4))
+//     {
+//         cout << "FAIL: 3rd pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 5.5))
+//     {
+//         cout << "FAIL: 4th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 6.6))
+//     {
+//         cout << "FAIL: 5th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 7.7))
+//     {
+//         cout << "FAIL: 6th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 8.8))
+//     {
+//         cout << "FAIL: 7th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 9.9))
+//     {
+//         cout << "FAIL: 8th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 10))
+//     {
+//         cout << "FAIL: 9th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 11.1))
+//     {
+//         cout << "FAIL: 10th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     if (sortedLst.getSize() != 0)
+//     {
+//         cout << "FAIL: Ending size != " + to_string(sortedLst.getSize()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     cout << "PASS\n"
+//          << endl;
+//     return true;
+// }
+
+// bool test20_bigSortCw()
+// {
+//     cout << "Test 20: Testing sorting input map into list" << endl;
+
+//     int startIdx = 11;
+//     float input[12][2] = {{0, 0}, {1, 2.2}, {2, 3.3}, {3, 4.4}, {4, 5.5}, {5, 6.6}, 
+//                           {6, 7.7}, {7, 8.8}, {8, 9.9}, {9, 10}, {10, 11.1}, {11, 0},};
+
+//     SpicySort sortObj = SpicySort(input, startIdx);
+
+//     if (sortObj.first() != 10)
+//     {
+//         cout << "FAIL: First node ID != " + to_string(sortObj.first()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     if (sortObj.direction(sortObj.first()))
+//     {
+//         cout << "FAIL: Sort direction should be false (cw)\n"
+//              << endl;
+//         return false;
+//     }
+
+//     SpicyLinkedList sortedLst = sortObj.sort(input, startIdx);
+
+//     cout << "Expected:\t(10, 11.1) --> (9, 10) --> (8, 9.9) --> (7, 8.8) --> (6, 7.7) --> (5, 6.6) --> (4, 5.5) --> (3, 4.4) --> (2, 3.3) --> (1, 2.2)\nActual:  \t";
+//     sortedLst.print();
+
+//     if (sortedLst.getSize() != 10)
+//     {
+//         cout << "FAIL: Starting size != " + to_string(sortedLst.getSize()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     Node *removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 11.1))
+//     {
+//         cout << "FAIL: 1st pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 10))
+//     {
+//         cout << "FAIL: 2nd pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 9.9))
+//     {
+//         cout << "FAIL: 3rd pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 8.8))
+//     {
+//         cout << "FAIL: 4th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 7.7))
+//     {
+//         cout << "FAIL: 5th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 6.6))
+//     {
+//         cout << "FAIL: 6th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 5.5))
+//     {
+//         cout << "FAIL: 7th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 4.4))
+//     {
+//         cout << "FAIL: 8th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 3.3))
+//     {
+//         cout << "FAIL: 9th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 2.2))
+//     {
+//         cout << "FAIL: 10th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     if (sortedLst.getSize() != 0)
+//     {
+//         cout << "FAIL: Ending size != " + to_string(sortedLst.getSize()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     cout << "PASS\n"
+//          << endl;
+//     return true;
+// }
+
+// bool test21_bigSortCcw2()
+// {
+//     cout << "Test 21: Testing sorting input map into list" << endl;
+
+//     int startIdx = 8;
+//     float input[12][2] = {{0, 0}, {1, 2.2}, {2, 3.3}, {3, 4.4}, {4, 5.5}, {5, 6.6}, 
+//                           {6, 7.7}, {7, 0}, {8, 9.9}, {9, 10}, {10, 11.1}, {11, 0},};
+
+//     SpicySort sortObj = SpicySort(input, startIdx);
+
+//     if (sortObj.first() != 8)
+//     {
+//         cout << "FAIL: First node ID != " + to_string(sortObj.first()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     if (!sortObj.direction(sortObj.first()))
+//     {
+//         cout << "FAIL: Sort direction should be true (cw)\n"
+//              << endl;
+//         return false;
+//     }
+
+//     SpicyLinkedList sortedLst = sortObj.sort(input, startIdx);
+
+//     cout << "Expected:\t(8, 9.9) --> (9, 10) --> (10, 11.1) --> (1, 2.2) --> (2, 3.3) --> (3, 4.4) --> (4, 5.5) --> (5, 6.6) --> (6, 7.7)\nActual:  \t";
+//     sortedLst.print();
+
+//     if (sortedLst.getSize() != 9)
+//     {
+//         cout << "FAIL: Starting size != " + to_string(sortedLst.getSize()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     Node *removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 9.9))
+//     {
+//         cout << "FAIL: 1st pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 10))
+//     {
+//         cout << "FAIL: 2nd pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 11.1))
+//     {
+//         cout << "FAIL: 3rd pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 2.2))
+//     {
+//         cout << "FAIL: 4th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 3.3))
+//     {
+//         cout << "FAIL: 5th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 4.4))
+//     {
+//         cout << "FAIL: 6th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 5.5))
+//     {
+//         cout << "FAIL: 7th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 6.6))
+//     {
+//         cout << "FAIL: 8th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 7.7))
+//     {
+//         cout << "FAIL: 9th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     if (sortedLst.getSize() != 0)
+//     {
+//         cout << "FAIL: Ending size != " + to_string(sortedLst.getSize()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     cout << "PASS\n"
+//          << endl;
+//     return true;
+// }
+
+
+// bool test22_bigSortCw2()
+// {
+//     cout << "Test 22: Testing sorting input map into list" << endl;
+
+//     int startIdx = 6;
+//     float input[12][2] = {{0, 0}, {1, 2.2}, {2, 3.3}, {3, 4.4}, {4, 5.5}, {5, 6.6}, 
+//                           {6, 7.7}, {7, 8.8}, {8, 9.9}, {9, 10}, {10, 11.1}, {11, 0},};
+
+//     SpicySort sortObj = SpicySort(input, startIdx);
+
+
+//     if (sortObj.first() != 6)
+//     {
+//         cout << "FAIL: First node ID != " + to_string(sortObj.first()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     if (sortObj.direction(sortObj.first()))
+//     {
+//         cout << "FAIL: Sort direction should be false (cw)\n"
+//              << endl;
+//         return false;
+//     }
+
+//     SpicyLinkedList sortedLst = sortObj.sort(input, startIdx);
+
+//     cout << "Expected:\t(6, 7.7) --> (5, 6.6) --> (4, 5.5) --> (3, 4.4) --> (2, 3.3) --> (1, 2.2) --> (10, 11.1) --> (9, 10) --> (8, 9.9) --> (7, 8.8)\nActual:  \t";
+//     sortedLst.print();
+
+//     if (sortedLst.getSize() != 10)
+//     {
+//         cout << "FAIL: Starting size != " + to_string(sortedLst.getSize()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     Node *removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 7.7))
+//     {
+//         cout << "FAIL: 1st pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 6.6))
+//     {
+//         cout << "FAIL: 2nd pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 5.5))
+//     {
+//         cout << "FAIL: 3rd pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 4.4))
+//     {
+//         cout << "FAIL: 4th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 3.3))
+//     {
+//         cout << "FAIL: 5th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 2.2))
+//     {
+//         cout << "FAIL: 6th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 11.1))
+//     {
+//         cout << "FAIL: 7th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 10))
+//     {
+//         cout << "FAIL: 8th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 9.9))
+//     {
+//         cout << "FAIL: 9th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 8.8))
+//     {
+//         cout << "FAIL: 10th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     if (sortedLst.getSize() != 0)
+//     {
+//         cout << "FAIL: Ending size != " + to_string(sortedLst.getSize()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     cout << "PASS\n"
+//          << endl;
+//     return true;
+// }
+
+// bool test23_sortTest7()
+// {
+//     cout << "Test 23: Testing sorting input map into list" << endl;
+
+//     int startIdx = 6;
+//     float input[12][2] = {{0, 1.1}, {1, 2.2}, {2, 3.3}, {3, 0}, {4, 5.5}, {5, 6.6}, 
+//                           {6, 0}, {7, 8.8}, {8, 0}, {9, 10}, {10, 0}, {11, 12.2},};
+
+//     SpicySort sortObj = SpicySort(input, startIdx);
+
+
+//     if (sortObj.first() != 5)
+//     {
+//         cout << "FAIL: First node ID != " + to_string(sortObj.first()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     if (sortObj.direction(sortObj.first()))
+//     {
+//         cout << "FAIL: Sort direction should be false (cw)\n"
+//              << endl;
+//         return false;
+//     }
+
+//     SpicyLinkedList sortedLst = sortObj.sort(input, startIdx);
+//     cout << "Expected:\t(5, 6.6) --> (4, 5.5) --> (2, 3.3) --> (1, 2.2) --> (0, 1.1) --> (11, 12.2) --> (9, 10) --> (7, 8.8)\nActual:  \t";
+//     sortedLst.print();
+
+//     if (sortedLst.getSize() != 8)
+//     {
+//         cout << "FAIL: Starting size != " + to_string(sortedLst.getSize()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     Node *removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 6.6))
+//     {
+//         cout << "FAIL: 1st pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 5.5))
+//     {
+//         cout << "FAIL: 2nd pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 3.3))
+//     {
+//         cout << "FAIL: 3rd pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 2.2))
+//     {
+//         cout << "FAIL: 4th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 1.1))
+//     {
+//         cout << "FAIL: 5th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 12.2))
+//     {
+//         cout << "FAIL: 6th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 10))
+//     {
+//         cout << "FAIL: 7th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     removed = sortedLst.pop();
+//     if (removed->getAmount() != ((float) 8.8))
+//     {
+//         cout << "FAIL: 8th pop amount != " + to_string(removed->getAmount()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     if (sortedLst.getSize() != 0)
+//     {
+//         cout << "FAIL: Ending size != " + to_string(sortedLst.getSize()) + "\n"
+//              << endl;
+//         return false;
+//     }
+
+//     cout << "PASS\n"
+//          << endl;
+//     return true;
+// }
