@@ -18,16 +18,8 @@ extern Share<float> current_position;
 extern Queue<float> current_weight;
 
 //Data Shares 
-<<<<<<< HEAD
 extern Share<float> user_position;  //encoder position
-=======
-extern Queue<float> user_position;
-extern Queue<float> user_weight;
->>>>>>> ae6b0be9091e1b6bfcc0a93abd9bf73160a8831f
 //end
-
-extern Queue<float> desired_position;
-extern Queue<float> desired_weight;
 
 extern Share<bool> door_open;
 
