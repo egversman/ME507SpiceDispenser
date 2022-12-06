@@ -4,8 +4,8 @@
 #include <task_carousel.h> 
 #include <task_opening.h>
 #include <task_door.h>
-#include <task_load_cell.h>
 #include <task_user.h>
+#include <task_load_cell.h>
 #include <FSM.h>
 #include <taskshare.h>         
 #include <taskqueue.h>
@@ -16,8 +16,8 @@ Share<float> current_position ("Position");
 Queue<float> current_weight (100, "Weight");
 Share<bool> initalized("initalized");
 Queue<float> user_position(100, "input position");
-Queue<float> user_weight(100, "input weight");
-
+Queue<float> desired_position(100, "input position");
+Queue<float> desired_weight(100, "input position");
 Share<bool> inst_recieved("instruction recieved");
 Share<bool> carousel_position("carousel desired position");
 Share<bool> zero("zero the carousel");
@@ -30,7 +30,7 @@ void setup()
     {                                
     }
 
-    xTaskCreate (task_user, "User Input", 5120, NULL, 1, NULL);
+    xTaskCreate (task_user, "Encoder", 5120, NULL, 6, NULL);
     //xTaskCreate (task_encoder, "Encoder", 5120, NULL, 6, NULL);
     //xTaskCreate (task_carousel, "Carousel Motor", 5120, NULL, 4, NULL);
     //xTaskCreate (task_door, "Door Motor", 5120, NULL, 3, NULL);

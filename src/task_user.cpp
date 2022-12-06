@@ -8,6 +8,7 @@
 #include <SpicySort.h> 
 #include <SpicyLinkedList.h> 
 
+
 void task_user (void* p_params)
 {
     //float startIdx = current_position.get();
@@ -26,17 +27,13 @@ void task_user (void* p_params)
         while(sortedLst.getSize() != 0)
         {
             Node* removed = sortedLst.pop();
-            user_position.put(removed->getSpiceId());
-            user_weight.put(removed->getAmount());
+            desired_position.put(removed->getSpiceId());
+            desired_weight.put(removed->getAmount());
+            Serial.print(desired_position.get());
+            Serial.print(desired_weight.get());
         }
 
-        Serial.print(user_position.get());
-        Serial.print("\t");
-        Serial.println(user_weight.get());
-
-        vTaskDelay(1000);
+        vTaskDelay(100);
     }
      
 }
-
-
