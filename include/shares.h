@@ -1,3 +1,14 @@
+/** @file shares.h
+ *  This is the header file that contains the shared variables.
+ * 
+ *  @author    Grant Gabrielson
+ *  @author    Bryce Turnipseed
+ *  @author    John Bruner
+ *  @author    Elijah Versman
+ *  @date      2022-Dec 5
+ *  @copyright 2022 by the authors 
+ */
+
 #include <taskshare.h>         
 #include <taskqueue.h>
 #include <PrintStream.h>

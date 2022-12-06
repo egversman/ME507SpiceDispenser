@@ -1,6 +1,18 @@
+/** @file encoder_class.h
+ *  This is the header file for the encoder class which is used to create the encoder object.
+ * 
+ *  @author    Grant Gabrielson
+ *  @author    Bryce Turnipseed
+ *  @author    John Bruner
+ *  @author    Elijah Versman
+ *  @date      2022-Dec 5
+ *  @copyright 2022 by the authors 
+ */
+
 #include <Arduino.h>
 
-
+/** @brief Class for the encoder.
+ */
 class Encoder
 {
 
