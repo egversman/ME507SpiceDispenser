@@ -48,7 +48,7 @@ void task_load_cell (void* p_params)
         weight = (scale.get_units(10), 5);
         current_weight.put(weight);
         
-        vTaskDelay(100); //10 Hz
+        vTaskDelay(1); //1000 Hz
      
   }
 }
