@@ -33,8 +33,14 @@
  * 
  *  @author A. Sinha
  *  @author JR Ridgely
+ *  @author John Bruner
+ *  @author Grant Gabrielson
+ *  @author Bryce Turnipseed
+ *  @author Elijah Versman
  *  @date   2022-Mar-28 Original stuff by Sinha
  *  @date   2022-Nov-04 Modified for ME507 use by Ridgely
+ *  @date   2022-Dec-06 Modified the html code for Spice Dispenser use by
+ *          Bruner, Gabrielson, Turnipseed, Versman
  *  @copyright 2022 by the authors, released under the MIT License.
  */
 
