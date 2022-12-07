@@ -2,7 +2,7 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
 [
     [ "encoder_class.h", "encoder__class_8h.html", "encoder__class_8h" ],
     [ "motor_driver_class.h", "motor__driver__class_8h.html", "motor__driver__class_8h" ],
-    [ "shares.h", "shares_8h.html", null ],
+    [ "shares.h", "shares_8h.html", "shares_8h" ],
     [ "SpicyLinkedList.h", "_spicy_linked_list_8h.html", "_spicy_linked_list_8h" ],
     [ "SpicyNode.h", "_spicy_node_8h.html", "_spicy_node_8h" ],
     [ "SpicySort.h", "_spicy_sort_8h.html", "_spicy_sort_8h" ],

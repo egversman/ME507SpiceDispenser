@@ -8,7 +8,10 @@ var class_spicy_linked_list =
     [ "incrementSize", "class_spicy_linked_list.html#a3b47608e6c5428942928430228acfb1c", null ],
     [ "insert", "class_spicy_linked_list.html#a31bf5992eed026e244cde2855081b2d8", null ],
     [ "pop", "class_spicy_linked_list.html#ae33bd5dd5e6e360926f377ac0e3b0016", null ],
+    [ "print", "class_spicy_linked_list.html#a93c70bc7ec711ae85c1e4a5ed79cbc4f", null ],
     [ "remove", "class_spicy_linked_list.html#a32b4a82e94160408fc76d2523a322f45", null ],
     [ "setAmount", "class_spicy_linked_list.html#a21e787c2ec2540ace2eae8f347bfacb9", null ],
-    [ "setHeadNode", "class_spicy_linked_list.html#a8f4ae495fb01de33bb951e45218c9d7e", null ]
+    [ "setHeadNode", "class_spicy_linked_list.html#a8f4ae495fb01de33bb951e45218c9d7e", null ],
+    [ "head", "class_spicy_linked_list.html#a044e03adfaeada4953dd9b620c913b45", null ],
+    [ "size", "class_spicy_linked_list.html#a3b493e0a3b4ed002170dbd6e0de08864", null ]
 ];
